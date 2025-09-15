@@ -1,0 +1,17 @@
+- Actress:
+    Official: "白峰美羽"
+    Aliases:
+      - { name: "白峰ミウ", source: javdb }
+      - { name: "白峰ミウ", source: javbus, order: 2 }
+  Only_Scan_First_Page: true
+  Enable_Download: true
+
+- Actress:
+    Official: "胡桃櫻"
+    Aliases:
+      - { name: "胡桃櫻", source: javdb }
+      - { name: "胡桃さくら", source: javbus, order: 2 }
+  Only_Scan_First_Page: true
+  Enable_Download: true
+
+
