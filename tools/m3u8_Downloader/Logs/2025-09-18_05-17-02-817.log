@@ -1,0 +1,24 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 05:17:02
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://surrit.com/0a2091bd-d59e-4031-a4fd-baaf72bffe94/720p/video.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/SONE-888 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/SONE-888 --save-name SONE-888-C --custom-proxy http://10.10.10.88:7890
+
+05:17:02.826 INFO : N_m3u8DL-RE (Beta version) 20241203
+05:17:02.835 EXTRA: ffmpeg => /usr/bin/ffmpeg
+05:17:02.835 INFO : Loading URL: https://surrit.com/0a2091bd-d59e-4031-a4fd-baaf72bffe94/720p/video.m3u8
+05:17:04.658 INFO : Content Matched: HTTP Live Streaming
+05:17:04.659 INFO : Parsing streams...
+05:17:04.679 WARN : Writing meta json
+05:17:04.710 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+05:17:04.710 INFO : Vid Kbps | 2006 Segments | ~02h13m40s
+05:17:04.716 INFO : Selected streams:
+05:17:04.717 INFO : Vid Kbps | 2006 Segments | ~02h13m40s
+05:17:04.717 WARN : Writing meta json
+05:17:04.741 INFO : Save Name: SONE-888-C
+05:17:04.746 INFO : Start downloading...Vid Kbps
+05:17:06.470 WARN : Reading media info...
+05:17:06.528 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 59.94 fps
+05:17:06.528 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 130 kb/s
+05:18:55.771 INFO : ffmpeg merging...
+05:18:55.772 WARN : Segments more than 1800, start partial merge...
+05:20:13.032 INFO : Done

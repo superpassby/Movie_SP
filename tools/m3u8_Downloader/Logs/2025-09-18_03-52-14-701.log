@@ -1,0 +1,28 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 03:52:14
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://hot-box-gen.mushroomtrack.com/hls/jQPe6nkU9-gOIE9SpnePug/1758149534/52000/52771/52771.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/IPZZ-690 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/IPZZ-690 --save-name IPZZ-690-C --custom-proxy http://10.10.10.88:7890
+
+03:52:14.710 INFO : N_m3u8DL-RE (Beta version) 20241203
+03:52:14.719 EXTRA: ffmpeg => /usr/bin/ffmpeg
+03:52:14.719 INFO : Loading URL: https://hot-box-gen.mushroomtrack.com/hls/jQPe6nkU9-gOIE9SpnePug/1758149534/52000/52771/52771.m3u8
+03:52:17.263 INFO : Content Matched: HTTP Live Streaming
+03:52:17.264 INFO : Parsing streams...
+03:52:17.666 WARN : Writing meta json
+03:52:17.706 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+03:52:17.707 INFO : Vid *AES_128 Kbps | 2212 Segments | ~02h27m29s
+03:52:17.712 INFO : Selected streams:
+03:52:17.713 INFO : Vid *AES_128 Kbps | 2212 Segments | ~02h27m29s
+03:52:17.713 WARN : Writing meta json
+03:52:17.751 INFO : Save Name: IPZZ-690-C
+03:52:17.757 INFO : Start downloading...Vid Kbps
+03:52:19.441 WARN : Reading media info...
+03:52:19.497 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 59.94 fps
+03:52:19.497 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 130 kb/s
+03:52:21.527 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => An error occurred while sending the request.
+Url        => https://hot-box-gen.mushroomtrack.com/hls/jQPe6nkU9-gOIE9SpnePug/1758149534/52000/52771/527718.ts
+03:53:45.693 INFO : ffmpeg merging...
+03:53:45.694 WARN : Segments more than 1800, start partial merge...
+03:55:17.262 INFO : Done

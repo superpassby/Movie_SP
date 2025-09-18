@@ -1,0 +1,23 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 06:07:39
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://surrit.com/3bf983df-8da7-4a9d-8452-5044e0f7f6b1/720p/video.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/HMN-726 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/HMN-726 --save-name HMN-726-C --custom-proxy http://10.10.10.88:7890
+
+06:07:39.227 INFO : N_m3u8DL-RE (Beta version) 20241203
+06:07:39.236 EXTRA: ffmpeg => /usr/bin/ffmpeg
+06:07:39.236 INFO : Loading URL: https://surrit.com/3bf983df-8da7-4a9d-8452-5044e0f7f6b1/720p/video.m3u8
+06:07:41.065 INFO : Content Matched: HTTP Live Streaming
+06:07:41.065 INFO : Parsing streams...
+06:07:41.076 WARN : Writing meta json
+06:07:41.085 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+06:07:41.085 INFO : Vid Kbps | 38 Segments | ~02m29s
+06:07:41.085 INFO : Selected streams:
+06:07:41.085 INFO : Vid Kbps | 38 Segments | ~02m29s
+06:07:41.085 WARN : Writing meta json
+06:07:41.090 INFO : Save Name: HMN-726-C
+06:07:41.094 INFO : Start downloading...Vid Kbps
+06:07:42.926 WARN : Reading media info...
+06:07:42.981 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 27.58 fps
+06:07:42.981 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 131 kb/s
+06:07:47.089 INFO : ffmpeg merging...
+06:07:47.940 INFO : Done

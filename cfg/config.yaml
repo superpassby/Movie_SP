@@ -1,34 +1,44 @@
 # 视频存储位置
-SavePath_Sub: "/mnt/mac/SATA_SSD_2T/000-NASSAV/000-Sub/"
-SavePath_noSub: "/mnt/mac/SATA_SSD_2T/000-NASSAV/000-noSub/"
-SavePath_Javle_Sub: "/mnt/mac/SATA_SSD_2T/000-NASSAV/000-JableSub/"
-SavePath_rou_video: "/mnt/mac/SATA_SSD_2T/000-NASSAV/000-Rou/"
+SavePath_Sub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+SavePath_noSub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+SavePath_rou_video: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Rou/"
+
+# Jellyfin 参数
+Jellyfin: "http://10.10.10.88:8096"
 
 # 抓取网站用的代理
-Proxy_Catch: "http://10.10.10.88:7890"
+Proxy_Fetch: "http://10.10.10.88:7890"
 
 # 下载用的代理
 Proxy_Download: "http://10.10.10.88:7890"
 
 # 是否启用代理
-IsNeedCurlProxy: "y"
-IsNeedDownloadProxy: "y"
+IsNeedFetchProxy: "1"
+IsNeedDownloadProxy: "1"
 
-# 使用的下载器 (只能一个，默认 N_m3u8DL-RE)
-N_m3u8DL_RE: "y"
-yutoo: "y"
+# 使用的下载器 (按照顺序，失败后依次切换)
+Downloader:
+  - N_m3u8DL_RE: 0
+  - m3u8-linux-amd64: 0
+  - m3u8-Downloader-Go: 1
 
 # 数据源（仅针对 AV）及调用顺序
 DataSources:
+  - name: AvBase
+    enable: 1
+    urls:
+      - "https://avbase.net"
+
   - name: JavDB
-    order: 1
+    enable: 0
     urls:
       - "https://javdb.com"
 
   - name: JavBus
-    order: 1
+    enable: 0
     urls:
       - "https://javbus.com"
+
 
 JAV_Video_DataSources:
   - name: Jable
@@ -37,20 +47,19 @@ JAV_Video_DataSources:
       - "https://jable.tv/videos"
 
   - name: NetFlav
-    order: 2
+    order: 0
     urls:
       - "https://netflav.com"
 
-  - name: AvToday
-    order: 3
-    urls:
-      - "https://avtoday.io"
-
   - name: MissAV
-    order: 4
+    order: 2
     urls:
       - "https://missav.ai"
 
+  - name: AvToday
+    order: 0
+    urls:
+      - "https://avtoday.io"
 
   - name: HohoJ
     order: 0

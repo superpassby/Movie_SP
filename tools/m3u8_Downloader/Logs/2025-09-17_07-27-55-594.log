@@ -1,0 +1,623 @@
+﻿LOG 2025/09/17
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/17 07:27:55
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP --save-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/白峰美羽/WAAA-576 --save-name WAAA-576 --custom-proxy http://10.10.10.88:7890
+
+07:27:55.603 INFO : N_m3u8DL-RE (Beta version) 20241203
+07:27:55.612 EXTRA: ffmpeg => /usr/bin/ffmpeg
+07:27:55.612 INFO : Loading URL: https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131.m3u8
+07:27:58.406 INFO : Content Matched: HTTP Live Streaming
+07:27:58.407 INFO : Parsing streams...
+07:27:58.715 WARN : Writing meta json
+07:27:58.716 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+07:27:58.717 INFO : Vid *AES_128 Kbps | 1850 Segments | ~02h03m17s
+07:27:58.721 INFO : Selected streams:
+07:27:58.723 INFO : Vid *AES_128 Kbps | 1850 Segments | ~02h03m17s
+07:27:58.723 WARN : Writing meta json
+07:27:58.724 INFO : Save Name: WAAA-576
+07:27:58.726 INFO : Start downloading...Vid Kbps
+07:27:58.734 WARN : Reading media info...
+07:27:58.790 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+07:27:58.790 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 7 kb/s
+07:27:59.778 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0039.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313139.ts
+07:27:59.798 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0017.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313117.ts
+07:27:59.869 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0073.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313173.ts
+07:27:59.884 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0041.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313141.ts
+07:28:01.913 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0017.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313117.ts
+07:28:01.926 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0041.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313141.ts
+07:28:01.930 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0039.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313139.ts
+07:28:02.075 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0073.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313173.ts
+07:28:03.631 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0041.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313141.ts
+07:28:03.644 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0017.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313117.ts
+07:28:03.655 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0039.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313139.ts
+07:28:03.658 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0073.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313173.ts
+07:28:04.047 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0101.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131101.ts
+07:28:04.451 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0122.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131122.ts
+07:28:04.789 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0127.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131127.ts
+07:28:04.829 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0106.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131106.ts
+07:28:05.065 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0041.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313141.ts
+07:28:05.065 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0041.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313141.ts
+07:28:05.065 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0041.ts.tmp' because it is being used by another process.
+07:28:05.117 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0121.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131121.ts
+07:28:05.127 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0017.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313117.ts
+07:28:05.127 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0017.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313117.ts
+07:28:05.127 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0017.ts.tmp' because it is being used by another process.
+07:28:05.191 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0039.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313139.ts
+07:28:05.191 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0039.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313139.ts
+07:28:05.191 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0039.ts.tmp' because it is being used by another process.
+07:28:05.239 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0073.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313173.ts
+07:28:05.239 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0073.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/5313173.ts
+07:28:05.239 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0073.ts.tmp' because it is being used by another process.
+07:28:05.618 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0131.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131131.ts
+07:28:05.651 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0101.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131101.ts
+07:28:05.679 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0134.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131134.ts
+07:28:05.877 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0135.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131135.ts
+07:28:05.895 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0136.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131136.ts
+07:28:06.061 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0137.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131137.ts
+07:28:06.398 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0122.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131122.ts
+07:28:06.654 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0127.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131127.ts
+07:28:06.803 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0142.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131142.ts
+07:28:07.446 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0106.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131106.ts
+07:28:08.208 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0145.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131145.ts
+07:28:08.384 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0131.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131131.ts
+07:28:08.820 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0134.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131134.ts
+07:28:08.956 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0121.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131121.ts
+07:28:09.220 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0135.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131135.ts
+07:28:09.229 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0136.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131136.ts
+07:28:09.327 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0101.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131101.ts
+07:28:09.387 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0137.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131137.ts
+07:28:09.986 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0146.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131146.ts
+07:28:10.202 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0147.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131147.ts
+07:28:10.277 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0122.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131122.ts
+07:28:10.587 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0127.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131127.ts
+07:28:10.645 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0142.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131142.ts
+07:28:11.662 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0148.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131148.ts
+07:28:11.782 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0155.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131155.ts
+07:28:11.784 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0150.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131150.ts
+07:28:11.786 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0154.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131154.ts
+07:28:11.788 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0152.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131152.ts
+07:28:12.069 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0153.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131153.ts
+07:28:12.073 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0121.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131121.ts
+07:28:12.153 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0135.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131135.ts
+07:28:12.172 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0101.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131101.ts
+07:28:12.172 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0101.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131101.ts
+07:28:12.172 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0101.ts.tmp' because it is being used by another process.
+07:28:12.176 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0159.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131159.ts
+07:28:12.211 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0137.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131137.ts
+07:28:12.213 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0146.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131146.ts
+07:28:12.213 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0147.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131147.ts
+07:28:12.382 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0106.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131106.ts
+07:28:12.438 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0145.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131145.ts
+07:28:12.462 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0122.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131122.ts
+07:28:12.462 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0122.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131122.ts
+07:28:12.462 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0122.ts.tmp' because it is being used by another process.
+07:28:12.509 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0151.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131151.ts
+07:28:12.517 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0156.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131156.ts
+07:28:12.537 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0131.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131131.ts
+07:28:12.629 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0157.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131157.ts
+07:28:12.633 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0134.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131134.ts
+07:28:12.727 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0160.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131160.ts
+07:28:12.738 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0158.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131158.ts
+07:28:13.219 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0127.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131127.ts
+07:28:13.219 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0127.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131127.ts
+07:28:13.219 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0127.ts.tmp' because it is being used by another process.
+07:28:13.497 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0136.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131136.ts
+07:28:14.443 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0142.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131142.ts
+07:28:14.858 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0148.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131148.ts
+07:28:14.878 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0155.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131155.ts
+07:28:15.023 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0150.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131150.ts
+07:28:15.097 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0154.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131154.ts
+07:28:16.473 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0152.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131152.ts
+07:28:17.019 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0153.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131153.ts
+07:28:17.093 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0121.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131121.ts
+07:28:17.093 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0121.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131121.ts
+07:28:17.093 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0121.ts.tmp' because it is being used by another process.
+07:28:17.299 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0135.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131135.ts
+07:28:17.299 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0135.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131135.ts
+07:28:17.299 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0135.ts.tmp' because it is being used by another process.
+07:28:17.535 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0159.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131159.ts
+07:28:18.313 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0137.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131137.ts
+07:28:18.314 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0137.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131137.ts
+07:28:18.314 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0137.ts.tmp' because it is being used by another process.
+07:28:18.658 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0147.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131147.ts
+07:28:18.663 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0134.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131134.ts
+07:28:18.663 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0134.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131134.ts
+07:28:18.663 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0134.ts.tmp' because it is being used by another process.
+07:28:18.667 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0160.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131160.ts
+07:28:18.667 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0156.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131156.ts
+07:28:18.672 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0158.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131158.ts
+07:28:18.676 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0148.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131148.ts
+07:28:18.682 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0154.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131154.ts
+07:28:18.722 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0157.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131157.ts
+07:28:18.729 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0155.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131155.ts
+07:28:18.777 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0153.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131153.ts
+07:28:18.886 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0142.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131142.ts
+07:28:18.886 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0142.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131142.ts
+07:28:18.886 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0142.ts.tmp' because it is being used by another process.
+07:28:18.916 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0151.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131151.ts
+07:28:18.929 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0106.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131106.ts
+07:28:18.929 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0106.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131106.ts
+07:28:18.929 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0106.ts.tmp' because it is being used by another process.
+07:28:18.944 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0136.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131136.ts
+07:28:18.944 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0136.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131136.ts
+07:28:18.944 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0136.ts.tmp' because it is being used by another process.
+07:28:19.604 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0146.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131146.ts
+07:28:19.698 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0131.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131131.ts
+07:28:19.698 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0131.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131131.ts
+07:28:19.698 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0131.ts.tmp' because it is being used by another process.
+07:28:19.822 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0152.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131152.ts
+07:28:20.778 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0159.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131159.ts
+07:28:20.842 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0145.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131145.ts
+07:28:20.998 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0150.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131150.ts
+07:28:22.079 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0147.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131147.ts
+07:28:22.079 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0147.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131147.ts
+07:28:22.079 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0147.ts.tmp' because it is being used by another process.
+07:28:22.363 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0160.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131160.ts
+07:28:22.693 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0156.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131156.ts
+07:28:22.803 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0158.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131158.ts
+07:28:23.071 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0148.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131148.ts
+07:28:23.071 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0148.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131148.ts
+07:28:23.071 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0148.ts.tmp' because it is being used by another process.
+07:28:23.218 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0154.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131154.ts
+07:28:23.218 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0154.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131154.ts
+07:28:23.218 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0154.ts.tmp' because it is being used by another process.
+07:28:23.460 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0157.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131157.ts
+07:28:24.030 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0155.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131155.ts
+07:28:24.030 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0155.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131155.ts
+07:28:24.030 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0155.ts.tmp' because it is being used by another process.
+07:28:24.106 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0153.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131153.ts
+07:28:24.106 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0153.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131153.ts
+07:28:24.106 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0153.ts.tmp' because it is being used by another process.
+07:28:24.167 EXTRA: Ah oh!
+RetryCount => 1
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0151.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131151.ts
+07:28:24.286 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0146.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131146.ts
+07:28:24.286 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0146.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131146.ts
+07:28:24.286 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0146.ts.tmp' because it is being used by another process.
+07:28:24.349 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0152.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131152.ts
+07:28:24.349 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0152.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131152.ts
+07:28:24.349 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0152.ts.tmp' because it is being used by another process.
+07:28:25.409 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0159.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131159.ts
+07:28:25.409 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0159.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131159.ts
+07:28:25.409 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0159.ts.tmp' because it is being used by another process.
+07:28:25.417 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0145.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131145.ts
+07:28:25.417 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0145.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131145.ts
+07:28:25.417 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0145.ts.tmp' because it is being used by another process.
+07:28:25.421 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0150.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131150.ts
+07:28:25.421 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0150.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131150.ts
+07:28:25.421 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0150.ts.tmp' because it is being used by another process.
+07:28:25.426 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0160.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131160.ts
+07:28:25.426 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0160.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131160.ts
+07:28:25.426 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0160.ts.tmp' because it is being used by another process.
+07:28:25.439 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0158.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131158.ts
+07:28:25.439 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0158.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131158.ts
+07:28:25.439 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0158.ts.tmp' because it is being used by another process.
+07:28:25.828 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0157.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131157.ts
+07:28:25.828 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0157.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131157.ts
+07:28:25.828 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0157.ts.tmp' because it is being used by another process.
+07:28:25.879 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0151.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131151.ts
+07:28:25.879 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0151.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131151.ts
+07:28:25.879 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0151.ts.tmp' because it is being used by another process.
+07:28:26.426 EXTRA: Ah oh!
+RetryCount => 0
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0156.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131156.ts
+07:28:26.426 EXTRA: The retry attempts have been exhausted and the download of this segment has failed.
+Exception  => The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0156.ts.tmp' because it is being used by another process.
+Url        => https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131156.ts
+07:28:26.426 WARN : The process cannot access the file '/mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP/WAAA-576/0____/0156.ts.tmp' because it is being used by another process.
+07:30:09.084 ERROR: Segment count check not pass, total: 1850, downloaded: 1820.
+07:30:09.085 ERROR: Failed

@@ -1,0 +1,24 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 05:23:37
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://asf-doc.mushroomtrack.com/hls/yeqAetlerl637z-28gMxwA/1758155017/53000/53313/53313.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/SONE-884 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/SONE-884 --save-name SONE-884-C --custom-proxy http://10.10.10.88:7890
+
+05:23:37.815 INFO : N_m3u8DL-RE (Beta version) 20241203
+05:23:37.824 EXTRA: ffmpeg => /usr/bin/ffmpeg
+05:23:37.824 INFO : Loading URL: https://asf-doc.mushroomtrack.com/hls/yeqAetlerl637z-28gMxwA/1758155017/53000/53313/53313.m3u8
+05:23:40.342 INFO : Content Matched: HTTP Live Streaming
+05:23:40.343 INFO : Parsing streams...
+05:23:40.836 WARN : Writing meta json
+05:23:40.872 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+05:23:40.873 INFO : Vid *AES_128 Kbps | 2012 Segments | ~02h14m07s
+05:23:40.877 INFO : Selected streams:
+05:23:40.878 INFO : Vid *AES_128 Kbps | 2012 Segments | ~02h14m07s
+05:23:40.878 WARN : Writing meta json
+05:23:40.910 INFO : Save Name: SONE-884-C
+05:23:40.916 INFO : Start downloading...Vid Kbps
+05:23:41.815 WARN : Reading media info...
+05:23:41.870 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 59.94 fps
+05:23:41.871 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 31 kb/s
+05:25:00.834 INFO : ffmpeg merging...
+05:25:00.834 WARN : Segments more than 1800, start partial merge...
+05:26:17.427 INFO : Done

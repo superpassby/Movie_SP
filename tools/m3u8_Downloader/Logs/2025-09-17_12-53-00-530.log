@@ -1,0 +1,24 @@
+﻿LOG 2025/09/17
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/17 12:53:00
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://surrit.com/b5a06a85-500e-4688-a3cc-5a753e86f90c/720p/video.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/ATID-637 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/白峰美羽/ATID-637 --save-name ATID-637 --custom-proxy http://10.10.10.88:7890
+
+12:53:00.539 INFO : N_m3u8DL-RE (Beta version) 20241203
+12:53:00.548 EXTRA: ffmpeg => /usr/bin/ffmpeg
+12:53:00.548 INFO : Loading URL: https://surrit.com/b5a06a85-500e-4688-a3cc-5a753e86f90c/720p/video.m3u8
+12:53:03.856 INFO : Content Matched: HTTP Live Streaming
+12:53:03.856 INFO : Parsing streams...
+12:53:03.873 WARN : Writing meta json
+12:53:03.906 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+12:53:03.906 INFO : Vid Kbps | 2412 Segments | ~02h40m44s
+12:53:03.912 INFO : Selected streams:
+12:53:03.913 INFO : Vid Kbps | 2412 Segments | ~02h40m44s
+12:53:03.913 WARN : Writing meta json
+12:53:03.941 INFO : Save Name: ATID-637
+12:53:03.947 INFO : Start downloading...Vid Kbps
+12:53:06.454 WARN : Reading media info...
+12:53:06.517 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+12:53:06.518 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 4 kb/s
+13:07:05.048 INFO : ffmpeg merging...
+13:07:05.049 WARN : Segments more than 1800, start partial merge...
+13:08:24.518 INFO : Done

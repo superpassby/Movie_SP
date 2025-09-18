@@ -1,0 +1,30 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 03:44:00
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://anono-cloneing.mushroomtrack.com/hls/cLek_nLIX72p9TvKAlusLw/1758149039/52000/52782/52782.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/MIDA-311 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/MIDA-311 --save-name MIDA-311-C --custom-proxy http://10.10.10.88:7890
+
+03:44:00.163 INFO : N_m3u8DL-RE (Beta version) 20241203
+03:44:00.173 EXTRA: ffmpeg => /usr/bin/ffmpeg
+03:44:00.173 INFO : Loading URL: https://anono-cloneing.mushroomtrack.com/hls/cLek_nLIX72p9TvKAlusLw/1758149039/52000/52782/52782.m3u8
+03:44:23.470 WARN : The SSL connection could not be established, see inner exception. (1/10)
+03:44:24.971 INFO : Loading URL: https://anono-cloneing.mushroomtrack.com/hls/cLek_nLIX72p9TvKAlusLw/1758149039/52000/52782/52782.m3u8
+03:44:27.396 INFO : Content Matched: HTTP Live Streaming
+03:44:27.397 INFO : Parsing streams...
+03:44:27.702 WARN : Writing meta json
+03:44:27.742 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+03:44:27.742 INFO : Vid *AES_128 Kbps | 2092 Segments | ~02h19m26s
+03:44:27.748 INFO : Selected streams:
+03:44:27.748 INFO : Vid *AES_128 Kbps | 2092 Segments | ~02h19m26s
+03:44:27.749 WARN : Writing meta json
+03:44:27.806 INFO : Save Name: MIDA-311-C
+03:44:27.813 INFO : Start downloading...Vid Kbps
+03:44:28.314 WARN : Reading media info...
+03:44:28.387 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+03:44:28.387 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 4 kb/s
+03:44:31.839 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The decryption operation failed, see inner exception.
+Url        => https://anono-cloneing.mushroomtrack.com/hls/cLek_nLIX72p9TvKAlusLw/1758149039/52000/52782/5278242.ts
+03:45:56.906 INFO : ffmpeg merging...
+03:45:56.907 WARN : Segments more than 1800, start partial merge...
+03:47:06.622 INFO : Done

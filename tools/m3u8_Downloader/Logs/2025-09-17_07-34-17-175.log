@@ -1,0 +1,24 @@
+﻿LOG 2025/09/17
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/17 07:34:17
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP --save-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/白峰美羽/WAAA-576 --save-name WAAA-576 --custom-proxy http://10.10.10.88:7890
+
+07:34:17.191 INFO : N_m3u8DL-RE (Beta version) 20241203
+07:34:17.208 EXTRA: ffmpeg => /usr/bin/ffmpeg
+07:34:17.209 INFO : Loading URL: https://adoda-smart-coin.mushroomtrack.com/hls/D7TEciLA308VJgit42U4Dg/1758076075/53000/53131/53131.m3u8
+07:34:19.331 INFO : Content Matched: HTTP Live Streaming
+07:34:19.331 INFO : Parsing streams...
+07:34:19.701 WARN : Writing meta json
+07:34:19.735 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+07:34:19.736 INFO : Vid *AES_128 Kbps | 1850 Segments | ~02h03m17s
+07:34:19.738 INFO : Selected streams:
+07:34:19.739 INFO : Vid *AES_128 Kbps | 1850 Segments | ~02h03m17s
+07:34:19.739 WARN : Writing meta json
+07:34:19.768 INFO : Save Name: WAAA-576
+07:34:19.779 INFO : Start downloading...Vid Kbps
+07:34:20.295 WARN : Reading media info...
+07:34:20.594 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+07:34:20.594 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 7 kb/s
+07:38:42.467 INFO : ffmpeg merging...
+07:38:42.468 WARN : Segments more than 1800, start partial merge...
+07:39:58.227 INFO : Done

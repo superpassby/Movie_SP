@@ -1,0 +1,204 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 06:09:32
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/MIDA-326 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/MIDA-326 --save-name MIDA-326-C --custom-proxy http://10.10.10.88:7890
+
+06:09:32.319 INFO : N_m3u8DL-RE (Beta version) 20241203
+06:09:32.329 EXTRA: ffmpeg => /usr/bin/ffmpeg
+06:09:32.329 INFO : Loading URL: https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video.m3u8
+06:09:33.857 INFO : Content Matched: HTTP Live Streaming
+06:09:33.857 INFO : Parsing streams...
+06:09:33.875 WARN : Writing meta json
+06:09:33.902 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+06:09:33.902 INFO : Vid Kbps | 1833 Segments | ~02h02m10s
+06:09:33.908 INFO : Selected streams:
+06:09:33.908 INFO : Vid Kbps | 1833 Segments | ~02h02m10s
+06:09:33.908 WARN : Writing meta json
+06:09:33.931 INFO : Save Name: MIDA-326-C
+06:09:33.936 INFO : Start downloading...Vid Kbps
+06:09:35.188 WARN : Reading media info...
+06:09:35.245 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.92 fps
+06:09:35.246 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 4 kb/s
+06:10:03.355 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video764.jpeg
+06:10:03.355 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video760.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video763.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video771.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video772.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video767.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video745.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video773.jpeg
+06:10:03.356 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video769.jpeg
+06:10:03.357 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video770.jpeg
+06:10:03.357 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video761.jpeg
+06:10:03.357 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video781.jpeg
+06:10:03.357 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video758.jpeg
+06:10:03.358 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video762.jpeg
+06:10:03.358 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video765.jpeg
+06:10:03.358 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video750.jpeg
+06:10:03.359 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video768.jpeg
+06:10:03.365 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video784.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video785.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video786.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video780.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video777.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video787.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video782.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video788.jpeg
+06:10:03.366 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video783.jpeg
+06:10:03.367 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video766.jpeg
+06:10:03.368 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Connection refused (10.10.10.88:7890)
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video775.jpeg
+06:10:03.512 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video774.jpeg
+06:10:09.392 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video785.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video770.jpeg
+06:10:09.392 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video766.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video782.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video781.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video761.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video784.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video786.jpeg
+06:10:09.392 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video750.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video758.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video765.jpeg
+06:10:09.393 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video780.jpeg
+06:10:09.396 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video777.jpeg
+06:10:09.396 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video783.jpeg
+06:10:09.396 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video775.jpeg
+06:10:09.396 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => The SSL connection could not be established, see inner exception.
+Url        => https://surrit.com/6bca610e-9105-48ce-ba56-b8e60fa2efbe/720p/video763.jpeg
+06:10:56.656 INFO : ffmpeg merging...
+06:10:56.657 WARN : Segments more than 1800, start partial merge...
+06:11:57.169 INFO : Done

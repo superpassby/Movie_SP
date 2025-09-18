@@ -1,0 +1,24 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 05:48:39
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://surrit.com/fe0ce7fa-ed0d-4801-8993-b9bb6f6e0ad3/720p/video.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/DASS-726 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/DASS-726 --save-name DASS-726-C --custom-proxy http://10.10.10.88:7890
+
+05:48:39.440 INFO : N_m3u8DL-RE (Beta version) 20241203
+05:48:39.449 EXTRA: ffmpeg => /usr/bin/ffmpeg
+05:48:39.449 INFO : Loading URL: https://surrit.com/fe0ce7fa-ed0d-4801-8993-b9bb6f6e0ad3/720p/video.m3u8
+05:48:41.265 INFO : Content Matched: HTTP Live Streaming
+05:48:41.266 INFO : Parsing streams...
+05:48:41.287 WARN : Writing meta json
+05:48:41.317 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+05:48:41.318 INFO : Vid Kbps | 2261 Segments | ~02h30m42s
+05:48:41.323 INFO : Selected streams:
+05:48:41.323 INFO : Vid Kbps | 2261 Segments | ~02h30m42s
+05:48:41.324 WARN : Writing meta json
+05:48:41.351 INFO : Save Name: DASS-726-C
+05:48:41.357 INFO : Start downloading...Vid Kbps
+05:48:42.512 WARN : Reading media info...
+05:48:42.565 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+05:48:42.566 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 55 kb/s
+05:49:59.382 INFO : ffmpeg merging...
+05:49:59.383 WARN : Segments more than 1800, start partial merge...
+05:51:12.544 INFO : Done

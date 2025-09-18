@@ -1,0 +1,24 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 06:17:11
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://home-clone-clear.mushroomtrack.com/hls/qoDZ4xQUNo6jduF_RXOJ4Q/1758158231/52000/52747/52747.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/ROE-381 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/ROE-381 --save-name ROE-381-C --custom-proxy http://10.10.10.88:7890
+
+06:17:11.479 INFO : N_m3u8DL-RE (Beta version) 20241203
+06:17:11.489 EXTRA: ffmpeg => /usr/bin/ffmpeg
+06:17:11.489 INFO : Loading URL: https://home-clone-clear.mushroomtrack.com/hls/qoDZ4xQUNo6jduF_RXOJ4Q/1758158231/52000/52747/52747.m3u8
+06:17:14.897 INFO : Content Matched: HTTP Live Streaming
+06:17:14.897 INFO : Parsing streams...
+06:17:15.906 WARN : Writing meta json
+06:17:15.946 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+06:17:15.946 INFO : Vid *AES_128 Kbps | 2200 Segments | ~02h26m40s
+06:17:15.953 INFO : Selected streams:
+06:17:15.954 INFO : Vid *AES_128 Kbps | 2200 Segments | ~02h26m40s
+06:17:15.954 WARN : Writing meta json
+06:17:15.992 INFO : Save Name: ROE-381-C
+06:17:15.999 INFO : Start downloading...Vid Kbps
+06:17:17.008 WARN : Reading media info...
+06:17:17.065 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 59.94 fps
+06:17:17.066 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 4 kb/s
+06:23:07.953 INFO : ffmpeg merging...
+06:23:07.955 WARN : Segments more than 1800, start partial merge...
+06:24:31.792 INFO : Done

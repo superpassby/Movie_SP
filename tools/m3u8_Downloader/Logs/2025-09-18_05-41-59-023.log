@@ -1,0 +1,24 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 05:41:59
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://anono-cloneing.mushroomtrack.com/hls/jpOOhM_ZHZKXeFns56TxrA/1758156118/53000/53083/53083.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/DVAJ-704 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/DVAJ-704 --save-name DVAJ-704-C --custom-proxy http://10.10.10.88:7890
+
+05:41:59.032 INFO : N_m3u8DL-RE (Beta version) 20241203
+05:41:59.041 EXTRA: ffmpeg => /usr/bin/ffmpeg
+05:41:59.041 INFO : Loading URL: https://anono-cloneing.mushroomtrack.com/hls/jpOOhM_ZHZKXeFns56TxrA/1758156118/53000/53083/53083.m3u8
+05:42:01.445 INFO : Content Matched: HTTP Live Streaming
+05:42:01.446 INFO : Parsing streams...
+05:42:01.859 WARN : Writing meta json
+05:42:01.901 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+05:42:01.901 INFO : Vid *AES_128 Kbps | 2218 Segments | ~02h27m53s
+05:42:01.907 INFO : Selected streams:
+05:42:01.909 INFO : Vid *AES_128 Kbps | 2218 Segments | ~02h27m53s
+05:42:01.909 WARN : Writing meta json
+05:42:01.945 INFO : Save Name: DVAJ-704-C
+05:42:01.951 INFO : Start downloading...Vid Kbps
+05:42:03.115 WARN : Reading media info...
+05:42:03.168 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+05:42:03.172 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 93 kb/s
+05:43:20.617 INFO : ffmpeg merging...
+05:43:20.618 WARN : Segments more than 1800, start partial merge...
+05:44:25.768 INFO : Done

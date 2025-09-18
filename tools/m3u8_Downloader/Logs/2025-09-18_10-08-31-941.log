@@ -1,0 +1,28 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 10:08:31
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/IPZZ-693 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/IPZZ-693 --save-name IPZZ-693-C --custom-proxy http://10.10.10.88:7890
+
+10:08:31.955 INFO : N_m3u8DL-RE (Beta version) 20241203
+10:08:31.968 EXTRA: ffmpeg => /usr/bin/ffmpeg
+10:08:31.968 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:08:36.972 WARN : The SSL connection could not be established, see inner exception. (1/10)
+10:08:38.473 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:08:43.477 WARN : The SSL connection could not be established, see inner exception. (2/10)
+10:08:44.978 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:08:49.981 WARN : The SSL connection could not be established, see inner exception. (3/10)
+10:08:51.482 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:08:56.496 WARN : The SSL connection could not be established, see inner exception. (4/10)
+10:08:57.997 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:08:57.998 WARN : Connection refused (10.10.10.88:7890) (5/10)
+10:08:59.500 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:08:59.501 WARN : Connection refused (10.10.10.88:7890) (6/10)
+10:09:01.002 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:09:01.003 WARN : Connection refused (10.10.10.88:7890) (7/10)
+10:09:02.503 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:09:02.504 WARN : Connection refused (10.10.10.88:7890) (8/10)
+10:09:04.005 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:09:04.006 WARN : Connection refused (10.10.10.88:7890) (9/10)
+10:09:05.507 INFO : Loading URL: https://asutin-billion.mushroomtrack.com/hls/GRgueJVTRp3ffwKfhb9DDw/1758172111/52000/52772/52772.m3u8
+10:09:05.508 WARN : Connection refused (10.10.10.88:7890) (10/10)
+10:09:07.009 ERROR: Failed to execute action after 10 retries.

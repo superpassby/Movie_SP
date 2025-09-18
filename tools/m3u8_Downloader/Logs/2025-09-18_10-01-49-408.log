@@ -1,0 +1,8 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 10:01:49
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://home-clone-clear.mushroomtrack.com/hls/NjzPJE7ToLPHLo57Kuq5cQ/1758171709/52000/52774/52774.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/Jable_cnSUB/PRED-803 --save-name PRED-803-C --custom-proxy http://10.10.10.88:7890
+
+10:01:49.426 INFO : N_m3u8DL-RE (Beta version) 20241203
+10:01:49.439 EXTRA: ffmpeg => /usr/bin/ffmpeg
+10:01:49.439 INFO : Loading URL: https://home-clone-clear.mushroomtrack.com/hls/NjzPJE7ToLPHLo57Kuq5cQ/1758171709/52000/52774/52774.m3u8

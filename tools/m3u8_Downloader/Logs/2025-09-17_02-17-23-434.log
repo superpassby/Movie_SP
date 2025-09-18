@@ -1,0 +1,21 @@
+﻿LOG 2025/09/17
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/17 02:17:23
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://hot-box-gen.mushroomtrack.com/hls/WQayJ9ngSnjtANPlBtU3JQ/1758056878/53000/53131/53131.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP --save-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/WAAA-576 --save-name WAAA-576 --custom-proxy http://10.10.10.88:7890
+
+02:17:23.449 INFO : N_m3u8DL-RE (Beta version) 20241203
+02:17:23.465 EXTRA: ffmpeg => /usr/bin/ffmpeg
+02:17:23.466 INFO : Loading URL: https://hot-box-gen.mushroomtrack.com/hls/WQayJ9ngSnjtANPlBtU3JQ/1758056878/53000/53131/53131.m3u8
+02:17:26.125 INFO : Content Matched: HTTP Live Streaming
+02:17:26.125 INFO : Parsing streams...
+02:17:26.620 WARN : Writing meta json
+02:17:26.653 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+02:17:26.654 INFO : Vid *AES_128 Kbps | 1850 Segments | ~02h03m17s
+02:17:26.656 INFO : Selected streams:
+02:17:26.657 INFO : Vid *AES_128 Kbps | 1850 Segments | ~02h03m17s
+02:17:26.657 WARN : Writing meta json
+02:17:26.688 INFO : Save Name: WAAA-576
+02:17:26.697 INFO : Start downloading...Vid Kbps
+02:17:28.122 WARN : Reading media info...
+02:17:28.414 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+02:17:28.414 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 7 kb/s

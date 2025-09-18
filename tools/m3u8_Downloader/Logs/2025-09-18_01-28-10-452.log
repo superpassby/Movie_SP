@@ -1,0 +1,25 @@
+﻿LOG 2025/09/18
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/18 01:28:10
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://surrit.com/6ec26baa-4564-4eba-adaa-7485656e00e9/720p/video.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/WAAA-576 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/白峰美羽/WAAA-576 --save-name WAAA-576-C --custom-proxy http://10.10.10.88:7890
+
+01:28:10.461 INFO : N_m3u8DL-RE (Beta version) 20241203
+01:28:10.474 EXTRA: ffmpeg => /usr/bin/ffmpeg
+01:28:10.474 INFO : Loading URL: https://surrit.com/6ec26baa-4564-4eba-adaa-7485656e00e9/720p/video.m3u8
+01:28:11.098 INFO : Content Matched: HTTP Live Streaming
+01:28:11.098 INFO : Parsing streams...
+01:28:11.116 WARN : Writing meta json
+01:28:11.162 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+01:28:11.163 INFO : Vid Kbps | 1850 Segments | ~02h03m17s
+01:28:11.169 INFO : Selected streams:
+01:28:11.169 INFO : Vid Kbps | 1850 Segments | ~02h03m17s
+01:28:11.170 WARN : Writing meta json
+01:28:11.197 INFO : Save Name: WAAA-576-C
+01:28:11.201 INFO : Start downloading...Vid Kbps
+01:28:11.953 WARN : Reading media info...
+01:28:12.019 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+01:28:12.020 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 8 kb/s
+01:29:18.244 INFO : ffmpeg merging...
+01:29:18.246 WARN : WAAA-576-C.mp4 => WAAA-576-C.copy.mp4
+01:29:18.248 WARN : Segments more than 1800, start partial merge...
+01:30:23.026 INFO : Done

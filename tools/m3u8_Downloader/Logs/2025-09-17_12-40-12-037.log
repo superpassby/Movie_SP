@@ -1,0 +1,152 @@
+﻿LOG 2025/09/17
+Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
+Task Start: 2025/09/17 12:40:12
+Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/52475.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Movie_SP_tmp/N_m3u8DL_RE/ATID-639 --save-dir /mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/白峰美羽/ATID-639 --save-name ATID-639-C --custom-proxy http://10.10.10.88:7890
+
+12:40:12.047 INFO : N_m3u8DL-RE (Beta version) 20241203
+12:40:12.057 EXTRA: ffmpeg => /usr/bin/ffmpeg
+12:40:12.057 INFO : Loading URL: https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/52475.m3u8
+12:40:16.816 INFO : Content Matched: HTTP Live Streaming
+12:40:16.817 INFO : Parsing streams...
+12:40:17.213 WARN : Writing meta json
+12:40:17.257 INFO : Extracted, there are 1 streams, with 1 basic streams, 0 audio streams, 0 subtitle streams
+12:40:17.257 INFO : Vid *AES_128 Kbps | 2262 Segments | ~02h30m51s
+12:40:17.264 INFO : Selected streams:
+12:40:17.264 INFO : Vid *AES_128 Kbps | 2262 Segments | ~02h30m51s
+12:40:17.265 WARN : Writing meta json
+12:40:17.303 INFO : Save Name: ATID-639-C
+12:40:17.310 INFO : Start downloading...Vid Kbps
+12:40:18.560 WARN : Reading media info...
+12:40:18.615 INFO : [0x100]: Video, h264 (High) ([27][0][0][0]), 1280x720, 29.97 fps
+12:40:18.615 INFO : [0x101]: Audio, aac (LC) ([15][0][0][0]), 4 kb/s
+12:51:12.840 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752016.ts
+12:51:30.154 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752006.ts
+12:51:30.160 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752000.ts
+12:51:30.160 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751999.ts
+12:51:30.161 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752030.ts
+12:51:30.162 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751991.ts
+12:51:30.163 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751998.ts
+12:51:30.163 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752004.ts
+12:51:30.163 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752011.ts
+12:51:30.164 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752031.ts
+12:51:30.164 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752007.ts
+12:51:30.164 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751992.ts
+12:51:30.164 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => The response ended prematurely, with at least 1391216 additional bytes expected. (ResponseEnded)
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752002.ts
+12:51:30.164 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752001.ts
+12:51:30.165 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752022.ts
+12:51:30.166 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752019.ts
+12:51:30.166 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752010.ts
+12:51:30.168 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751974.ts
+12:51:30.168 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751980.ts
+12:51:30.168 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751984.ts
+12:51:30.169 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751996.ts
+12:51:30.169 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752012.ts
+12:51:30.170 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752003.ts
+12:51:30.170 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752009.ts
+12:51:30.170 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752008.ts
+12:51:30.170 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752015.ts
+12:51:30.171 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752013.ts
+12:51:30.171 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752017.ts
+12:51:30.171 EXTRA: Ah oh!
+RetryCount => 2
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752016.ts
+12:51:30.172 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752005.ts
+12:51:30.172 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524752014.ts
+12:51:30.173 EXTRA: Ah oh!
+RetryCount => 3
+Exception  => Received an unexpected EOF or 0 bytes from the transport stream.
+Url        => https://astin-cowing.mushroomtrack.com/hls/bUxEyXlm6XkG1lGeya8EQA/1758094811/52000/52475/524751993.ts
+12:51:42.562 INFO : ffmpeg merging...
+12:51:42.562 WARN : Segments more than 1800, start partial merge...
+12:52:57.579 INFO : Done
