@@ -13,7 +13,12 @@ done
 
 # ------------------ 定义选项及命令（支持多行） ------------------
 declare -A MENU
-MENU[1]="写入演员配置到数据库|
+
+MENU[1]="运行docker|
+docker compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm movie_sp /home/appuser/app/main.sh
+"
+
+MENU[2]="写入演员配置到数据库|
 python3 $PROJECT_ROOT/tools/Data_Base_Edit/yaml_to_db.py
 "
 
@@ -62,6 +67,11 @@ MENU[9]="更新 Javle 中文视频 (前10页) 到数据库|
 python3 $PROJECT_ROOT/tools/get_id_from_url_jable.py 1 10
 "
 
+MENU[10]="上传 github |
+git add $PROJECT_ROOT/.
+git commit -m "commit"
+git push -u origin main
+"
 
 
 

@@ -237,9 +237,9 @@ def fetch_m3u8_url(video_id, video_source):
 
 #         # 构建下载命令
 #         if selected_downloader == "N_m3u8DL_RE":
-#             # cmd = f"{PROJECT_ROOT}/tools/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} --auto-select True --thread-count 32 --tmp-dir {save_path}/000-TMP --save-dir {save_path_real} --save-name {savename}"
+#             # cmd = f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} --auto-select True --thread-count 32 --tmp-dir {save_path}/000-TMP --save-dir {save_path_real} --save-name {savename}"
 #             cmd = (
-#                 f"{PROJECT_ROOT}/tools/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
+#                 f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
 #                 f"--auto-select True --thread-count 32 "
 #                 f"--tmp-dir {tmp_path} "
 #                 f"--save-dir {save_path_real} "
@@ -251,7 +251,7 @@ def fetch_m3u8_url(video_id, video_source):
 
 #         elif selected_downloader == "m3u8-Downloader-Go":
 #             go_cmd = (
-#                 f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-Downloader-Go -c 32 -u {m3u8_url} "
+#                 f"/m3u8_Downloader/m3u8-Downloader-Go -c 32 -u {m3u8_url} "
 #                 f"-o {tmp_path}/{video_id}.ts "
 #             )
             
@@ -266,9 +266,9 @@ def fetch_m3u8_url(video_id, video_source):
 #             cmd = f"{go_cmd} && {ffmpeg_cmd}"
 
 #         elif selected_downloader == "m3u8-linux-amd64":
-#             # cmd = f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} -o {savename} -sp {save_path_real}"
+#             # cmd = f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} -o {savename} -sp {save_path_real}"
 #             cmd = (
-#             f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
+#             f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
 #             f"-o {savename} -sp {tmp_path} && "
 #             f"mv {tmp_path} {save_path_real}"
 #             )
@@ -277,7 +277,7 @@ def fetch_m3u8_url(video_id, video_source):
 #             if IsNeedDownloadProxy == "1":
 #                 cmd = (
 #                 f"export http_proxy={Proxy_Download} https_proxy={Proxy_Download} && "
-#                 f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
+#                 f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
 #                 f"-o {savename} -sp {tmp_path} && "
 #                 f"mv {tmp_path} {save_path_real.parent} && "
 #                 "unset http_proxy https_proxy"
@@ -389,7 +389,7 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
         success = False
         for selected_downloader, _ in downloader_list:
             
-            tmp_path = f"{save_path.parent}/{save_path.parent.name}_tmp/{selected_downloader}/{video_id}" 
+            tmp_path = f"{save_path.parent}/{save_path.name}_tmp/{selected_downloader}/{video_id}" 
             Path(tmp_path).mkdir(parents=True, exist_ok=True)
 
             cmd = build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, savename, Proxy_Download, IsNeedDownloadProxy)
@@ -418,7 +418,7 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
 def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, savename, Proxy_Download, IsNeedDownloadProxy):
     if selected_downloader == "N_m3u8DL_RE":
         cmd = (
-            f"{PROJECT_ROOT}/tools/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
+            f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
             f"--auto-select True --thread-count 32 "
             f"--tmp-dir {tmp_path} "
             f"--save-dir {save_path_real} "
@@ -429,7 +429,7 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
 
     elif selected_downloader == "m3u8-Downloader-Go":
         go_cmd = (
-            f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-Downloader-Go -c 32 -u {m3u8_url} "
+            f"/m3u8_Downloader/m3u8-Downloader-Go -c 32 -u {m3u8_url} "
             f"-o {tmp_path}/{savename}.ts "
         )
         if IsNeedDownloadProxy == "1":
@@ -443,14 +443,14 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
 
     elif selected_downloader == "m3u8-linux-amd64":
         cmd = (
-            f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
+            f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
             f"-o {savename} -sp {tmp_path} && "
             f"mv {tmp_path}/{savename}.mp4 {save_path_real}/"
         )
         if IsNeedDownloadProxy == "1":
             cmd = (
                 f"export http_proxy={Proxy_Download} https_proxy={Proxy_Download} && "
-                f"{PROJECT_ROOT}/tools/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
+                f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
                 f"-o {savename} -sp {tmp_path} && "
                 f"mv {tmp_path}/{savename}.mp4 {save_path_real}/ && "
                 "unset http_proxy https_proxy"

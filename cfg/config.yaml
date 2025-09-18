@@ -1,6 +1,9 @@
 # 视频存储位置
-SavePath_Sub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
-SavePath_noSub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+SavePath_Sub: "/DRIVE/000-Movie_SP/000-JAV/"
+SavePath_noSub: "/DRIVE/000-Movie_SP/000-JAV/"
+
+# SavePath_Sub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+
 SavePath_rou_video: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Rou/"
 
 # Jellyfin 参数

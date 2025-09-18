@@ -1,3 +1,4 @@
 PyYAML
 js2py
 curl_cffi
+beautifulsoup4

@@ -1,8 +1,0 @@
-﻿LOG 2025/09/17
-Save Path: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/Logs
-Task Start: 2025/09/17 01:55:56
-Task CommandLine: /home/super/DockerData/Movie_SP/tools/m3u8_Downloader/N_m3u8DL-RE https://asf-doc.mushroomtrack.com/hls/ZQgHZHAF4mDgq-dfv6-GBQ/1758055709/53000/53131/53131.m3u8 --auto-select True --thread-count 32 --tmp-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/000-TMP --save-dir /mnt/mac/SATA_SSD_2T/Movie_SP/000-Sub/WAAA-576 --save-name WAAA-576 --custom-proxy http://10.10.10.88:7890
-
-01:55:56.194 INFO : N_m3u8DL-RE (Beta version) 20241203
-01:55:56.198 EXTRA: ffmpeg => /usr/bin/ffmpeg
-01:55:56.198 INFO : 加载URL: https://asf-doc.mushroomtrack.com/hls/ZQgHZHAF4mDgq-dfv6-GBQ/1758055709/53000/53131/53131.m3u8
