@@ -16,14 +16,23 @@ db_path = PROJECT_ROOT / 'db' / 'data.db'
 # ------------------ 锁文件 ------------------
 LOCK_FILE = PROJECT_ROOT / 'work'
 
+# ------------------ 文件锁开关 ------------------
+# ENABLE_LOCK = True  # True 表示启用锁文件，False 表示禁用
+ENABLE_LOCK = False  # True 表示启用锁文件，False 表示禁用
+
 def create_lock_file():
+    if not ENABLE_LOCK:
+        return
     if LOCK_FILE.exists():
         print("存在锁文件，请检查。")
         sys.exit(0)
     LOCK_FILE.touch()
     print("锁文件 'work' 已创建。")
 
+
 def delete_lock_file():
+    if not ENABLE_LOCK:
+        return
     if LOCK_FILE.exists():
         LOCK_FILE.unlink()
         print("锁文件 'work' 已删除。")
@@ -93,7 +102,8 @@ def parse_filter(filter):
     return date_min, date_max, keywords
 
 # ------------------ 过滤视频 ------------------
-def filter_videos():
+# def filter_videos():
+def filter_videos(target_actresses=None):
     sources = load_sources()
 
     conn = sqlite3.connect(db_path)
@@ -109,9 +119,14 @@ def filter_videos():
         enable_download = s.get("Enable_Download", 1)
         filter_rule = s.get("Filter", "")  # 避免使用 Python 保留字 filter
 
-        if enable_download != 1:
-            print(f"Skipping name {name} because Enable_Download != 1")
-            continue
+        # <<< 新增逻辑：指定演员时，只处理这些
+        if target_actresses is not None:
+            if name not in target_actresses:
+                continue
+        else:
+            if enable_download != 1:
+                print(f"Skipping name {name} because Enable_Download != 1")
+                continue
 
         date_min, date_max, keywords = parse_filter(filter_rule)
         print(f"\nFiltering for actress: {name}, Filter: {filter_rule}")
@@ -178,147 +193,9 @@ def fetch_m3u8_url(video_id, video_source):
         print(f"Exception fetching m3u8_url: {e}")
         return None, None
 
-
-# def process_video_ids(filtered_videos, video_data_sources, cfg):
-#     import subprocess
-#     download_cmds = []
-
-#     # 选择下载器：第一个值为1的
-#     downloader_cfg = cfg.get("Downloader", [])
-#     selected_downloader = None
-#     for d in downloader_cfg:
-#         for name, flag in d.items():
-#             if flag == 1:
-#                 selected_downloader = name
-#                 break
-#         if selected_downloader:
-#             break
-#     if not selected_downloader:
-#         print("No downloader selected!")
-#         return
-
-#     SavePath_Sub = Path(cfg.get("SavePath_Sub"))
-#     SavePath_noSub = Path(cfg.get("SavePath_noSub"))
-#     Proxy_Download = cfg.get("Proxy_Download", "")
-#     IsNeedDownloadProxy = str(cfg.get("IsNeedDownloadProxy", "0"))
-
-#     # 连接数据库
-#     conn = sqlite3.connect(db_path)
-#     cursor = conn.cursor()
-
-#     for video in filtered_videos:
-#         video_id, name, video_date, video_title, chinese_sub, state = video
-
-#         # 获取下载 URL（调用现有 fetch_m3u8_url）
-#         m3u8_url = None
-#         for source in sorted(video_data_sources, key=lambda x: x.get("order", 0)):
-#             if source.get("order", 0) == 0:
-#                 continue
-#             url, sub_flag = fetch_m3u8_url(video_id, source)
-#             if url and url not in ["false", "404"]:
-#                 m3u8_url = url
-#                 break
-#         if not m3u8_url:
-#             print(f"{video_id} 返回的url:{url} 跳过...")
-#             continue  # 全部失败或 false/404，跳过该 ID
-
-#         # 根据 chinese_sub 选择保存目录
-#         save_path = SavePath_Sub if chinese_sub == 1 else SavePath_noSub
-#         # 根据 chinese_sub 构建保存文件名
-#         savename = f"{video_id}-C" if chinese_sub == 1 else video_id
-        
-#         save_path_real = f"{save_path}/{name}/{video_id}"
-#         save_path_real = Path(save_path_real)  # 转换成 Path
-#         Path(save_path_real).mkdir(parents=True, exist_ok=True)
-
-#         tmp_path = f"{save_path.parent}/{save_path.parent.name}_tmp/{selected_downloader}/{video_id}" 
-#         Path(tmp_path).mkdir(parents=True, exist_ok=True)
-
-
-#         # 构建下载命令
-#         if selected_downloader == "N_m3u8DL_RE":
-#             # cmd = f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} --auto-select True --thread-count 32 --tmp-dir {save_path}/000-TMP --save-dir {save_path_real} --save-name {savename}"
-#             cmd = (
-#                 f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
-#                 f"--auto-select True --thread-count 32 "
-#                 f"--tmp-dir {tmp_path} "
-#                 f"--save-dir {save_path_real} "
-#                 f"--save-name {savename}"
-#             )
-            
-#             if IsNeedDownloadProxy == "1":
-#                 cmd += f" --custom-proxy {Proxy_Download}"
-
-#         elif selected_downloader == "m3u8-Downloader-Go":
-#             go_cmd = (
-#                 f"/m3u8_Downloader/m3u8-Downloader-Go -c 32 -u {m3u8_url} "
-#                 f"-o {tmp_path}/{video_id}.ts "
-#             )
-            
-#             if IsNeedDownloadProxy == "1":
-#                 go_cmd += f" -p {Proxy_Download}"
-
-#             ffmpeg_cmd = (
-#                 f"ffmpeg -i {tmp_path}/{video_id}.ts -c copy -f mp4 {save_path_real}/{savename}.mp4 && "
-#                 f"rm {tmp_path}/{video_id}.ts "
-#             )
-
-#             cmd = f"{go_cmd} && {ffmpeg_cmd}"
-
-#         elif selected_downloader == "m3u8-linux-amd64":
-#             # cmd = f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} -o {savename} -sp {save_path_real}"
-#             cmd = (
-#             f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
-#             f"-o {savename} -sp {tmp_path} && "
-#             f"mv {tmp_path} {save_path_real}"
-#             )
-            
-
-#             if IsNeedDownloadProxy == "1":
-#                 cmd = (
-#                 f"export http_proxy={Proxy_Download} https_proxy={Proxy_Download} && "
-#                 f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
-#                 f"-o {savename} -sp {tmp_path} && "
-#                 f"mv {tmp_path} {save_path_real.parent} && "
-#                 "unset http_proxy https_proxy"
-#                 )
-
-
-#         # 执行下载
-#         print(f"Executing download: {cmd}")
-#         subprocess.run(cmd, shell=True)
-
-#         # 下载完成后检查 {id}.mp4 是否存在
-#         mp4_file = save_path / name / video_id / f"{savename}.mp4"
-#         if mp4_file.exists():
-#             cursor.execute("UPDATE jav_videos SET state='download' WHERE id=?", (video_id,))
-#             conn.commit()
-#             print(f"[DB] Set state='download' for ID {video_id}")
-#         else:
-#             print(f"[WARN] {mp4_file} not found. Skipping DB update.")
-
-#         # 保存命令记录，可选
-#         download_cmds.append(cmd)
-
-#     conn.close()
-
-#     print("\nAll download commands executed:")
-#     for cmd in download_cmds:
-#         print(cmd)
-
 def process_video_ids(filtered_videos, video_data_sources, cfg):
     import subprocess
     download_cmds = []
-
-    # # 读取下载器配置，按 order 排序
-    # downloader_cfg = cfg.get("Downloader", [])
-    # # 转换为 (name, order) 列表
-    # downloader_list = []
-    # for d in downloader_cfg:
-    #     for name, order in d.items():
-    #         downloader_list.append((name, order))
-    # downloader_list.sort(key=lambda x: x[1])  # 按 order 升序
-
 
     # 读取下载器配置，按 order 排序，0 表示禁用
     downloader_cfg = cfg.get("Downloader", [])
@@ -380,10 +257,8 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
         save_path = SavePath_Sub if chinese_sub == 1 else SavePath_noSub
         savename = f"{video_id}-C" if chinese_sub == 1 else video_id
         save_path_real = Path(f"{save_path}/{name}/{video_id}")
-        save_path_real.mkdir(parents=True, exist_ok=True)
-
-        # tmp_path = Path(f"{save_path.parent}/{save_path.parent.name}_tmp")
-        # tmp_path.mkdir(parents=True, exist_ok=True)
+        # # 创建保存目录
+        # save_path_real.mkdir(parents=True, exist_ok=True)
 
         # 依次尝试下载器
         success = False
@@ -436,7 +311,9 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
             go_cmd += f" -p {Proxy_Download}"
 
         ffmpeg_cmd = (
-            f"ffmpeg -i {tmp_path}/{savename}.ts -c copy -f mp4 {save_path_real}/{savename}.mp4 && "
+            f"ffmpeg -i {tmp_path}/{savename}.ts -c copy -f mp4 {tmp_path}/{savename}.mp4 && "          
+            f"mkdir -p {save_path_real} && "
+            f"mv {tmp_path}/{savename}.mp4 {save_path_real} && "          
             f"rm {tmp_path}/{savename}.ts "
         )
         cmd = f"{go_cmd} && {ffmpeg_cmd}"
@@ -445,6 +322,7 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
         cmd = (
             f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
             f"-o {savename} -sp {tmp_path} && "
+            f"mkdir -p {save_path_real} && "
             f"mv {tmp_path}/{savename}.mp4 {save_path_real}/"
         )
         if IsNeedDownloadProxy == "1":
@@ -452,6 +330,7 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
                 f"export http_proxy={Proxy_Download} https_proxy={Proxy_Download} && "
                 f"/m3u8_Downloader/m3u8-linux-amd64 -u {m3u8_url} "
                 f"-o {savename} -sp {tmp_path} && "
+                f"mkdir -p {save_path_real} && "
                 f"mv {tmp_path}/{savename}.mp4 {save_path_real}/ && "
                 "unset http_proxy https_proxy"
             )
@@ -459,27 +338,21 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
         cmd = "echo 'Unsupported downloader'"
     return cmd
 
-
-# # ------------------ 主函数 ------------------
-# def main():
-#     cfg = load_config()
-#     filtered_videos = filter_videos()
-#     video_data_sources = video_fetch(cfg_path)
-#     process_video_ids(filtered_videos, video_data_sources, cfg)
-
-# if __name__ == "__main__":
-#     main()
-
-# ------------------ 主函数 ------------------
 def main():
     create_lock_file()
     try:
         cfg = load_config()
-        filtered_videos = filter_videos()
+
+        # 获取命令行指定的演员，支持多个
+        target_actresses = sys.argv[1:] if len(sys.argv) > 1 else None
+
+        filtered_videos = filter_videos(target_actresses)
         video_data_sources = video_fetch(cfg_path)
         process_video_ids(filtered_videos, video_data_sources, cfg)
     finally:
         delete_lock_file()
+
+
 
 if __name__ == "__main__":
     main()
