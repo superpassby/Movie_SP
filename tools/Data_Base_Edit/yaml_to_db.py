@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sqlite3
-import yaml
-import os
 import sys
 from pathlib import Path
-
+import yaml
 # ------------------ 动态添加项目根目录 ------------------
 CURRENT_FILE = Path(__file__).resolve()
 PROJECT_ROOT = next(p for p in CURRENT_FILE.parents if (p / "cfg").exists())
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+# 现在再导入 db_edit
+from tools.Data_Base_Edit.db_edit import db_edit
+
 
 # ------------------ 锁文件 ------------------
 LOCK_FILE = PROJECT_ROOT / 'work'
@@ -40,8 +44,8 @@ def create_db_file():
     return db_file
 
 # ------------------ 创建数据库表 ------------------
-def create_tables(cursor):
-    cursor.execute('''
+def create_tables():
+    sql = '''
     CREATE TABLE IF NOT EXISTS actresses (
         name TEXT PRIMARY KEY,
         individual_movie TEXT,
@@ -50,15 +54,20 @@ def create_tables(cursor):
         max_actress_count INTEGER,
         enable_download INTEGER,
         filter TEXT,
-        Bust INTEGER,
-        Cup TEXT,
-        Waist INTEGER,
-        Hip INTEGER                                    
+        aka TEXT,
+        birthday TEXT,
+        height TEXT,
+        bust TEXT,
+        waist TEXT,
+        hip TEXT,
+        cup TEXT                                    
     )
-    ''')
+    '''
+    db_edit.execute(sql)
+    print("[INFO] 表 actresses 已确保存在")
 
 # ------------------ 插入/更新数据（增量更新 + 插入） ------------------
-def insert_actresses(data, cursor):
+def insert_actresses(data):
     count = 0
     for actress in data:
         name = actress.get('Name')
@@ -69,7 +78,7 @@ def insert_actresses(data, cursor):
         enable_download = actress.get('Enable_Download', 0)
         filter = actress.get('Filter', 'VR')
 
-        cursor.execute('''
+        sql = '''
         INSERT INTO actresses (name, individual_movie, only_scan_first_page, enable_scan, max_actress_count, enable_download, filter)
         VALUES (?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(name) DO UPDATE SET
@@ -79,7 +88,8 @@ def insert_actresses(data, cursor):
             max_actress_count=excluded.max_actress_count,
             enable_download=excluded.enable_download,
             filter=excluded.filter
-        ''', (name, individual_movie, only_scan_first_page, enable_scan, max_actress_count, enable_download, filter))
+        '''
+        db_edit.execute(sql, (name, individual_movie, only_scan_first_page, enable_scan, max_actress_count, enable_download, filter))
         count += 1
     return count
 
@@ -92,30 +102,23 @@ def main():
         with yaml_file.open('r', encoding='utf-8') as f:
             data = yaml.safe_load(f)
 
-        # 创建数据库
-        db_file = create_db_file()
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
+        # 创建数据库文件
+        create_db_file()
 
         # 创建表
-        create_tables(cursor)
+        create_tables()
 
         # ------------------- 删除数据库中不在 YAML 的记录 -------------------
         names_in_yaml = [actress['Name'] for actress in data]
         if names_in_yaml:  # 防止列表为空报错
             placeholders = ','.join('?' for _ in names_in_yaml)
-            cursor.execute(f'''
-            DELETE FROM actresses
-            WHERE name NOT IN ({placeholders})
-            ''', names_in_yaml)
+            sql_delete = f'DELETE FROM actresses WHERE name NOT IN ({placeholders})'
+            db_edit.execute(sql_delete, names_in_yaml)
         else:
-            cursor.execute('DELETE FROM actresses')
+            db_edit.execute('DELETE FROM actresses')
 
         # ------------------- 增量更新/插入 -------------------
-        actress_count = insert_actresses(data, cursor)
-
-        conn.commit()
-        conn.close()
+        actress_count = insert_actresses(data)
 
         print(f"数据已成功同步到数据库！共插入/更新 {actress_count} 条女演员数据。")
 

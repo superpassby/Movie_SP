@@ -3,25 +3,26 @@ import subprocess
 from pathlib import Path
 from curl_cffi import requests  # 使用 curl_cffi 提供的 requests
 from typing import Optional
+import sys
 
 
 
 PROJECT_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "cfg").exists())
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 CONFIG_FILE = PROJECT_ROOT / "cfg" / "config.yaml"
-SOURCE_FILE = PROJECT_ROOT / "cfg" / "source.yaml"
-ACTRESS_DIR = PROJECT_ROOT / "data"
+# SOURCE_FILE = PROJECT_ROOT / "cfg" / "source.yaml"
 CURL = PROJECT_ROOT / "tools" / "curl_chrome116"
 
-# 确保目录存在（相当于 mkdir -p）
-ACTRESS_DIR.mkdir(parents=True, exist_ok=True)
+
 
 # 直接加载 YAML 文件
 with open(CONFIG_FILE, "r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
 
-with open(SOURCE_FILE, "r", encoding="utf-8") as f:
-    source = yaml.safe_load(f)
+# with open(SOURCE_FILE, "r", encoding="utf-8") as f:
+#     source = yaml.safe_load(f)
 
 # print("config:", config)
 # print("source:", source)

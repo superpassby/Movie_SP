@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import sys
-import sqlite3
-import yaml
 from pathlib import Path
 import datetime
 import subprocess
-
+import requests
+from collections import deque
+import yaml
+import datetime
 
 # ------------------ 动态添加项目根目录 ------------------
+
 CURRENT_FILE = Path(__file__).resolve()
 PROJECT_ROOT = next(p for p in CURRENT_FILE.parents if (p / "cfg").exists())
 
@@ -17,54 +19,20 @@ if str(PROJECT_ROOT) not in sys.path:
 
 DB_PATH = PROJECT_ROOT / "db" / "data.db"
 CFG_PATH = PROJECT_ROOT / "cfg" / "config.yaml"
+SOURCE_PATH = PROJECT_ROOT / "cfg" / "source.yaml"
 
 # ------------------ 导入数据源脚本 ------------------
 from tools.jav_data_fetch import data_AvBase  # 默认用 AvBase（enable=1 且第一个）
+from tools.Data_Base_Edit.db_edit import db_edit
+from tools.jav_data_fetch import data_AvBase
+from switch_clash import switch_clash_group # 导入 switch_clash_group 函数
 
-
-
-# def update_yaml_fetch_state(actress_name, fetch_state_msg):
-#     yaml_path = PROJECT_ROOT / "cfg" / "source.yaml"
-
-#     with open(yaml_path, "r", encoding="utf-8") as f:
-#         data = yaml.safe_load(f)
-
-#     for entry in data:
-#         if entry.get("Name") == actress_name:
-#             # 插入到 Name 下一行，只保留最近一次结果
-#             entry["Fetch_State"] = fetch_state_msg
-#             break
-
-#     with open(yaml_path, "w", encoding="utf-8") as f:
-#         yaml.dump(data, f, allow_unicode=True, sort_keys=False)
-
-
-def update_yaml_fetch_state(actress_name, fetch_state_msg):
+# ---------- 确保表存在 ----------
+def ensure_table():
     """
-    使用 sed 更新 cfg/source.yaml 中指定演员的 Fetch_State，
-    插入到 Name 行下一行，只保留最新的结果
+    确保 jav_videos 表存在
     """
-    yaml_path = PROJECT_ROOT / "cfg" / "source.yaml"
-
-    # 1. 删除原来的 Fetch_State 行（紧跟在 Name 后面）
-    subprocess.run([
-        "sed", "-i",
-        f"/- Name: {actress_name}/{{n; s/^[[:space:]]*Fetch_State:.*//}}",
-        str(yaml_path)
-    ], check=True)
-
-    # 2. 在 Name 行后插入新的 Fetch_State
-    subprocess.run([
-        "sed", "-i",
-        f"/- Name: {actress_name}/a\\  Fetch_State: {fetch_state_msg}",
-        str(yaml_path)
-    ], check=True)
-
-
-# ------------------ 确保表存在 ------------------
-def ensure_table(conn):
-    cursor = conn.cursor()
-    cursor.execute("""
+    sql = """
     CREATE TABLE IF NOT EXISTS jav_videos (
         name TEXT,
         date TEXT,
@@ -78,131 +46,349 @@ def ensure_table(conn):
         m3u8_source TEXT,
         title TEXT
     )
-    """)
-    conn.commit()
+    """
+    db_edit.execute(sql)
+    print("[INFO] 表 jav_videos 已确保存在")
 
-# ------------------ 插入/更新 ------------------
-def upsert_video(conn, video, max_count, actress_name):
-    cursor = conn.cursor()
-    vid = video.get("id")
+def clear_flag(SOURCE_PATH, keyword=None):
+    """
+    清除 source.yaml 中所有包含 Fetch_State 和指定关键词的行
+    :param SOURCE_PATH: yaml 文件路径
+    :param keyword: 需要匹配的关键词，如果为 None，则删除所有 Fetch_State 的行
+    """
+    try:
+        with open(SOURCE_PATH, "r", encoding="utf-8") as f:
+            lines = f.readlines()
 
-    cursor.execute("SELECT id FROM jav_videos WHERE id=?", (vid,))
-    existing = cursor.fetchone()
+        # 创建新的行列表，不包含 Fetch_State 和指定的关键词
+        if keyword:
+            new_lines = [line for line in lines if 'Fetch_State' not in line or keyword not in line]
+        else:
+            new_lines = [line for line in lines if 'Fetch_State' not in line]
 
-    # 状态判断
+        # 将更新后的内容写回文件
+        with open(SOURCE_PATH, "w", encoding="utf-8") as f:
+            f.writelines(new_lines)
+
+        print(f"[INFO] 清除了所有包含 Fetch_State 和关键词 '{keyword}' 的行")
+
+    except Exception as e:
+        print(f"[ERROR] 清除 Fetch_State 失败: {e}")
+
+def get_enabled_actresses():
+    """
+    获取需要扫描的演员列表
+    :return: [{ "name": ..., "only_scan_first_page": ... }, ...]
+    """
+    sql = """
+    SELECT name, only_scan_first_page, max_actress_count
+    FROM actresses
+    WHERE enable_scan = 1
+    """
+    rows = db_edit.fetch_all(sql)
+    # 转成字典列表返回
+    result = [{"name": row[0], "only_scan_first_page": row[1], "max_actress_count": row[2]} for row in rows]
+    return result
+
+def save_video_to_db(name, video, max_actress_count):
+    """
+    将单个视频信息写入数据库
+    :param name: 演员名字
+    :param video: 视频信息 dict
+    :param max_actress_count: 超过演员数量时设置 state 为 out_number
+    """
+    vid = video.get("work_id")
     state_val = None
-    if max_count is not None and video.get("actress_count") and video["actress_count"] > max_count:
+    if max_actress_count and video.get("actors_count") and video["actors_count"] > max_actress_count:
         state_val = "out_number"
 
+    # 查询是否已存在，并获取当前 state
+    sql_check = "SELECT id, state FROM jav_videos WHERE id=?"
+    existing = db_edit.fetch_one(sql_check, (vid,))
+
     if existing:
-        sql = """
+        existing_state = existing[1]
+        # 如果原 state 是 download 或 no_res 或 skip，则保持原值
+        if existing_state in ("download", "no_res", "skip"):
+            state_val = existing_state
+
+        sql_update = """
         UPDATE jav_videos
         SET name=?, date=?, title=?, actress_count=?, state=?
         WHERE id=?
         """
-        cursor.execute(sql, (
-            actress_name,
-            video.get("date"),
+        db_edit.execute(sql_update, (
+            name,
+            video.get("issue_date"),
             video.get("title"),
-            video.get("actress_count"),
+            video.get("actors_count"),
             state_val,
             vid
         ))
     else:
-        sql = """
+        sql_insert = """
         INSERT INTO jav_videos
-        (name, date, id, actress_count, chinese_sub, state, favorite, watched, m3u8, m3u8_source, title)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (id, name, title, date, actress_count, state)
+        VALUES (?, ?, ?, ?, ?, ?)
         """
-        cursor.execute(sql, (
-            actress_name,
-            video.get("date"),
+        db_edit.execute(sql_insert, (
             vid,
-            video.get("actress_count"),
-            None,
-            state_val,
-            None,
-            None,
-            None,
-            None,
+            name,
             video.get("title"),
+            video.get("issue_date"),
+            video.get("actors_count"),
+            state_val
         ))
-    conn.commit()
 
-# ------------------ 按演员处理 ------------------
-def process_actress(conn, source_name, actress_name, only_first, max_count):
+    print(f"[INFO] 写入 {vid} - {video.get('title')}")
+
+def write_actor_info_to_db(name, actor_info):
+    """
+    将演员信息写入 actresses 表
+    :param name: 演员姓名
+    :param actor_info: dict，包括 aka, birthday, height, bust, waist, hip, cup
+    """
+    if not actor_info:
+        print(f"[WARN] 没有提供 {name} 的演员信息，跳过写入")
+        return
+
+    sql_update_actor = """
+    UPDATE actresses
+    SET aka = ?, birthday = ?, height = ?, bust = ?, waist = ?, hip = ?, cup = ?
+    WHERE name = ?
+    """
+    db_edit.execute(sql_update_actor, (
+        actor_info.get("aka", ""),
+        actor_info.get("birthday", ""),
+        actor_info.get("height", ""),
+        actor_info.get("bust", ""),
+        actor_info.get("waist", ""),
+        actor_info.get("hip", ""),
+        actor_info.get("cup", ""),
+        name
+    ))
+    print(f"[INFO] 演员 {name} 信息已写入数据库")
+
+# def update_yaml_fetch_state(actress_name, fetch_state_msg):
+#     SOURCE_PATH = PROJECT_ROOT / "cfg" / "source.yaml"
+
+#     with open(SOURCE_PATH, "r", encoding="utf-8") as f:
+#         lines = f.readlines()
+
+#     new_lines = []
+#     skip_next = False
+#     for i, line in enumerate(lines):
+#         if skip_next:
+#             skip_next = False
+#             continue
+
+#         new_lines.append(line)
+#         if line.strip() == f"- Name: {actress_name}":
+#             # 删除原来的 Fetch_State 行
+#             if i + 1 < len(lines) and lines[i + 1].strip().startswith("Fetch_State:"):
+#                 skip_next = True
+#             # 添加新的 Fetch_State，带时间戳并用双引号包住
+#             import datetime
+#             timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#             new_lines.append(f'  Fetch_State: "{fetch_state_msg} | {timestamp}"\n')
+
+#     with open(SOURCE_PATH, "w", encoding="utf-8") as f:
+#         f.writelines(new_lines)
+
+def update_yaml_fetch_state(actress_name, fetch_state_msg):
+    import datetime
+    import re
+
+    with open(SOURCE_PATH, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    new_lines = []
+    inside_block = False
+    has_success = "success" in fetch_state_msg.lower()
+
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+
+        # 检测是否进入目标演员块
+        if stripped == f"- Name: {actress_name}":
+            inside_block = True
+            new_lines.append(line)
+            # 插入新的 Fetch_State，替换原有的或新增
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            new_lines.append(f'  Fetch_State: "{fetch_state_msg} | {timestamp}"\n')
+            continue
+
+        # 在演员块内时处理 Only_Scan_First_Page
+        if inside_block:
+            # 如果遇到下一块，结束当前块
+            if stripped.startswith("- Name:") and stripped != f"- Name: {actress_name}":
+                inside_block = False
+
+            # 修改 Only_Scan_First_Page
+            if has_success:
+                m = re.match(r'(\s*)Only_Scan_First_Page:\s*(\d+)', line)
+                if m and m.group(2) == "0":
+                    indent = m.group(1)
+                    line = f"{indent}Only_Scan_First_Page: 1\n"
+
+            # 如果原行是旧的 Fetch_State，就跳过
+            if stripped.startswith("Fetch_State:"):
+                continue
+
+        new_lines.append(line)
+
+    with open(SOURCE_PATH, "w", encoding="utf-8") as f:
+        f.writelines(new_lines)
+
+
+
+
+def process_actress(name, only_scan_first_page, max_actress_count):
+    """
+    抓取演员的视频信息并写入数据库，支持 last_max_N 机制
+    """
     page = 1
-    last_max_N = None   # 记录上一次成功获取的最大页数
+    last_max_N = None  # 记录上一次成功获取的最大页数
 
     while True:
-        if source_name == "AvBase":
-            videos, max_N = data_AvBase.fetch_videos_by_page(actress_name, page)
-        else:
-            print(f"[ERROR] 暂不支持数据源 {source_name}")
-            return
-        
-        if videos:
-            last_max_N = max_N   # 更新最新的 max_N
-        else:
-            # 如果 page > max_N，并且有 last_max_N，则用 last_max_N
-            if last_max_N and page > max_N:
-                max_N = last_max_N
+        try:
+            data = data_AvBase.fetch_actor_data(name, page)
+            works = data.get("works_info", [])
+            max_N = data.get("max_page", None)
 
-            msg = f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, 获取第 {page} 页失败, 已知有 {max_N or '?'} 页"
-            print(f"[WARN] {msg}")
-            update_yaml_fetch_state(actress_name, msg)
+            # ---------- page=1 时写入 actor_info ----------
+            if page == 1:
+                actor_info = data.get("actor_info", {})
+                write_actor_info_to_db(name, actor_info)
+
+            if works:
+                last_max_N = max_N
+            else:
+                if last_max_N and (not max_N or page > max_N):
+                    max_N = last_max_N
+                if page == last_max_N:
+                    msg = f"Success | {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 第 {page} 页抓取异常，但等于最大页 {last_max_N}，任务正常结束"
+                    update_yaml_fetch_state(name, msg)
+                    print(f"[INFO] {msg}")
+                    break
+                msg = f"Failed | {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 获取第 {page} 页失败, 已知有 {max_N or '?'} 页"
+                update_yaml_fetch_state(name, msg)
+                print(f"[WARN] {msg}")
+                break
+
+            # 写入视频信息
+            for w in works:
+                save_video_to_db(name, w, max_actress_count)
+
+        except Exception as e:
+            if page == last_max_N:
+                msg = f"Success | {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 第 {page} 页抓取异常，但等于最大页 {last_max_N}，任务正常结束"
+                update_yaml_fetch_state(name, msg)
+                print(f"[INFO] {msg}")
+                break
+            msg = f"Failed | {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 获取第 {page} 页失败: {e}"
+            update_yaml_fetch_state(name, msg)
+            print(f"[ERROR] {msg}")
             break
 
-        for v in videos:
-            print(f"[INFO] 写入 {v.get('id')} - {v.get('title')}")
-            upsert_video(conn, v, max_count, actress_name)
-
         # 翻页逻辑
-        if only_first == 1 or page >= max_N:
+        if only_scan_first_page or (max_N and page >= max_N):
             break
         page += 1
 
-    # ---------- post 处理 ----------
-    cursor = conn.cursor()
-    cursor.execute("SELECT id, actress_count FROM jav_videos WHERE name LIKE ?", (f"%{actress_name}%",))
-    rows = cursor.fetchall()
-    for vid, count in rows:
-        if count is not None and max_count is not None and count <= max_count:
-            cursor.execute("UPDATE jav_videos SET state=NULL WHERE id=? AND state='out_number'", (vid,))
-    conn.commit()
-
 # ------------------ 主函数 ------------------
+# def main():
+#     import sys
+#     import yaml
+#     ensure_table()
+#     actresses = get_enabled_actresses()
+#     failed_actors = []
+
+#     clear_flag(SOURCE_PATH)
+
+#     # 处理每个演员并记录失败的演员
+#     for a in actresses:
+#         process_actress(a["name"], a["only_scan_first_page"], a["max_actress_count"])
+
+#     # 如果命令行输入 're'，则重试失败的演员
+#     if len(sys.argv) > 1 and sys.argv[1] == "re":
+        
+#         # 读取 yaml 文件
+#         with open(SOURCE_PATH, "r", encoding="utf-8") as f:
+#             data = yaml.safe_load(f)
+
+#         # 获取失败的演员列表
+#         failed_actors = [item["Name"] for item in data if item.get("Fetch_State", "").startswith("Failed")]
+        
+#         # 循环重试失败演员，直到成功
+#         for name in failed_actors:
+#             while True:
+#                 clear_flag(SOURCE_PATH, "Failed")
+#                 process_actress(name, only_scan_first_page=True, max_actress_count=None)
+#                 # 读取 yaml 判断是否成功
+#                 with open(SOURCE_PATH, "r", encoding="utf-8") as f:
+#                     data_check = yaml.safe_load(f)
+#                 state_msg = next((it.get("Fetch_State", "") for it in data_check if it.get("Name") == name), "")
+#                 if state_msg.startswith("Success"):
+#                     break
+
+
+
+
+
+
+
+from collections import Counter
+import yaml
+from switch_clash import switch_clash_group
+
 def main():
-    conn = sqlite3.connect(DB_PATH)
-    ensure_table(conn)
+    ensure_table()
+    actresses = get_enabled_actresses()
+    yaml_path = SOURCE_PATH  # SOURCE_PATH 已定义
+    clear_flag(SOURCE_PATH)
 
-    # 读取配置
-    with open(CFG_PATH, "r", encoding="utf-8") as f:
-        config = yaml.safe_load(f)
-    data_sources = config.get("DataSources", [])
-    target_source = next((s for s in data_sources if s.get("enable") == 1), None)
+    # 首次处理所有演员
+    for a in actresses:
+        process_actress(a["name"], a["only_scan_first_page"], a["max_actress_count"])
+        # 检查 Failed 行数
+        with open(yaml_path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+        failed_count = sum(1 for item in data if item.get("Fetch_State", "").startswith("Failed"))
+        if failed_count and failed_count % 2 == 0:
+            best_node, best_delay, test_url = switch_clash_group("自定义代理", " | NB", "jable")
+            print(f"切换到 {best_node}，平均延迟: {best_delay:.2f}ms，测速链接: {test_url}")
 
-    if not target_source:
-        print("[ERROR] 没有启用的数据源")
-        sys.exit(1)
+    # 重试失败演员，跳过已成功的块
+    while True:
+        with open(yaml_path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
 
-    source_name = target_source["name"]
-    print(f"[INFO] 使用数据源: {source_name}")
+        # 找到没有成功的演员
+        retry_actors = [
+            item["Name"] for item in data
+            if item.get("Enable_Scan", 0) == 1 and ("Fetch_State" not in item or "Success" not in item.get("Fetch_State", ""))
+        ]
 
-    # 读取演员列表
-    cursor = conn.cursor()
-    cursor.execute("SELECT name, only_scan_first_page, enable_scan, max_actress_count FROM actresses")
-    actresses = cursor.fetchall()
+        if not retry_actors:
+            break  # 所有演员都成功，退出循环
 
-    for name, only_first, enable_scan, max_count in actresses:
-        if enable_scan != 1:
-            continue
-        print(f"[INFO] 开始抓取演员: {name}")
-        process_actress(conn, source_name, name, only_first, max_count)
+        for name in retry_actors:
+            # 每次重试前清除 Failed
+            clear_flag(yaml_path, "Failed")
 
-    conn.close()
-    print("[SUCCESS] 所有任务完成！")
+            process_actress(name, only_scan_first_page=True, max_actress_count=None)
+            # 检查 Failed 行数
+            with open(yaml_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+            failed_count = sum(1 for item in data if item.get("Fetch_State", "").startswith("Failed"))
+            if failed_count and failed_count % 2 == 0:
+                best_node, best_delay, test_url = switch_clash_group("自定义代理", " | NB", "jable")
+                print(f"切换到 {best_node}，平均延迟: {best_delay:.2f}ms，测速链接: {test_url}")
 
-# ------------------ 执行 ------------------
+
+
+
 if __name__ == "__main__":
     main()
+

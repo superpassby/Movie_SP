@@ -88,6 +88,8 @@ def video_fetch(cfg_path):
 
 # ------------------ 解析 Filter ------------------
 def parse_filter(filter):
+    if filter is None:        # <-- 新增这一行
+        filter = ""           # 避免 NoneType 错误
     date_min, date_max = None, None
     keywords = []
 
@@ -133,7 +135,7 @@ def filter_videos(target_actresses=None):
 
         for video in videos:
             vid, v_name, v_date, v_title, chinese_sub, state = video
-            print(f"Checking video: {vid}, name={v_name}, title={v_title}, state={state}")
+            # print(f"Checking video: {vid}, name={v_name}, title={v_title}, state={state}")
 
             if v_name != name:
                 continue
@@ -256,7 +258,14 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
 
         save_path = SavePath_Sub if chinese_sub == 1 else SavePath_noSub
         savename = f"{video_id}-C" if chinese_sub == 1 else video_id
-        save_path_real = Path(f"{save_path}/{name}/{video_id}")
+        # save_path_real = Path(f"{save_path}/{name}/{video_id}")
+
+        # 根据演员名称调整保存目录
+        if name.lower() == "jable_cnsub":
+            save_path_real = Path(f"{save_path}/每日更新/{video_id}")
+        else:
+            save_path_real = Path(f"{save_path}/精选收藏/{name}/{video_id}")
+
         # # 创建保存目录
         # save_path_real.mkdir(parents=True, exist_ok=True)
 
@@ -264,7 +273,21 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
         success = False
         for selected_downloader, _ in downloader_list:
             
-            tmp_path = f"{save_path.parent}/{save_path.name}_tmp/{selected_downloader}/{video_id}" 
+
+            
+            base_tmp_dir = f"{save_path.parent}/{save_path.name}_tmp/{selected_downloader}"
+            # 删除 base_tmp_dir 下的空文件夹（递归）
+            if Path(base_tmp_dir).exists():
+                for p in sorted(Path(base_tmp_dir).rglob("*"), reverse=True):
+                    if p.is_dir() and not any(p.iterdir()):  # 空文件夹
+                        p.rmdir()
+
+            tmp_path = f"{base_tmp_dir}/{video_id}" 
+            Path(tmp_path).mkdir(parents=True, exist_ok=True)
+
+
+
+            # tmp_path = f"{save_path.parent}/{save_path.name}_tmp/{selected_downloader}/{video_id}" 
             Path(tmp_path).mkdir(parents=True, exist_ok=True)
 
             cmd = build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, savename, Proxy_Download, IsNeedDownloadProxy)
@@ -296,11 +319,15 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
             f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
             f"--auto-select True --thread-count 32 "
             f"--tmp-dir {tmp_path} "
-            f"--save-dir {save_path_real} "
-            f"--save-name {savename}"
+            f"--save-dir {tmp_path} "
+            f"--save-name {savename} "
         )
+        # 把代理参数放在 && 前面
         if IsNeedDownloadProxy == "1":
-            cmd += f" --custom-proxy {Proxy_Download}"
+            cmd += f"--custom-proxy {Proxy_Download} "
+
+        # 后处理
+        cmd += f"&& mkdir -p {save_path_real} && mv {tmp_path}/{savename}.mp4 {save_path_real} && rm -rf {tmp_path} "
 
     elif selected_downloader == "m3u8-Downloader-Go":
         go_cmd = (
@@ -314,7 +341,7 @@ def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, 
             f"ffmpeg -i {tmp_path}/{savename}.ts -c copy -f mp4 {tmp_path}/{savename}.mp4 && "          
             f"mkdir -p {save_path_real} && "
             f"mv {tmp_path}/{savename}.mp4 {save_path_real} && "          
-            f"rm {tmp_path}/{savename}.ts "
+            f"rm -rf {tmp_path} "
         )
         cmd = f"{go_cmd} && {ffmpeg_cmd}"
 
@@ -348,7 +375,9 @@ def main():
 
         filtered_videos = filter_videos(target_actresses)
         video_data_sources = video_fetch(cfg_path)
-        process_video_ids(filtered_videos, video_data_sources, cfg)
+        # process_video_ids(filtered_videos, video_data_sources, cfg)
+        exit_code = process_video_ids(filtered_videos, video_data_sources, cfg)    
+        sys.exit(exit_code)
     finally:
         delete_lock_file()
 

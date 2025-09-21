@@ -1,32 +1,38 @@
-FROM python:3.12-slim
+# ------------------ 构建 m3u8-Downloader-Go ------------------
+FROM golang:1.22-alpine AS m3u8-builder
+WORKDIR /build
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories && \
+    apk update && apk add --no-cache git
+RUN git clone https://github.com/Greyh4t/m3u8-Downloader-Go.git src && \
+    cd src && git checkout tags/v1.5.2 && \
+    go build -o /build/m3u8-Downloader-Go
 
-# 设置中文环境
-ENV LANG=zh_CN.UTF-8 \
-    LC_ALL=zh_CN.UTF-8 \
-    PYTHONUNBUFFERED=1
+# ------------------ 下载 N_m3u8DL-RE ------------------
+FROM alpine:latest AS n-builder
+WORKDIR /tmp
+RUN apk add --no-cache curl tar
+RUN curl -L -o N_m3u8DL.tar.gz https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.3.0-beta/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz && \
+    tar -xzf N_m3u8DL.tar.gz
 
-# 安装依赖
-RUN apt-get update && apt-get install -y \
-    bash wget tar ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
+# ------------------ 最终镜像 ------------------
+FROM alpine:latest AS final
+WORKDIR /app
 
-# 创建普通用户
-RUN groupadd -g 1000 appuser && useradd -m -u 1000 -g appuser appuser
+# 安装必要基础环境(gcompat icu-libs 为 N_m3u8DL 所需)
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories && \
+    apk update && apk add --no-cache bash python3 py3-pip ffmpeg \ 
+    gcompat icu-libs \
+    libstdc++
 
-# 在 root 下创建工作目录并赋权
-RUN mkdir -p /home/appuser/app /m3u8_Downloader /DRIVE && \
-    chown -R appuser:appuser /home/appuser/app /m3u8_Downloader /DRIVE
+# 复制文件，不运行任何命令
+COPY requirements.txt ./
+COPY --from=m3u8-builder /build/m3u8-Downloader-Go /m3u8_Downloader/m3u8-Downloader-Go
+COPY --from=n-builder /tmp/N_m3u8DL-RE /m3u8_Downloader/
+RUN pip3 install --no-cache-dir --break-system-packages -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
-USER appuser
-WORKDIR /home/appuser/app
+# 赋予执行权限
+RUN chmod +x /m3u8_Downloader/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# 下载并解压 m3u8-Downloader-Go
-RUN wget -qO- https://github.com/Greyh4t/m3u8-Downloader-Go/releases/download/v1.5.2/m3u8-Downloader-Go_linux_amd64.tgz \
-    | tar -xz -C /m3u8_Downloader
-
-# CMD ["bash", "/home/appuser/app/main.sh"]
-CMD ["bash"]
+# 默认进入 bash
+ENTRYPOINT [""]
 

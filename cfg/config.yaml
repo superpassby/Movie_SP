@@ -1,13 +1,14 @@
 # 视频存储位置
 SavePath_Sub: "/DRIVE/000-Movie_SP/000-JAV/"
 SavePath_noSub: "/DRIVE/000-Movie_SP/000-JAV/"
-
+DRIVE_Path: "/Volumes/SATA_SSD_2T/"
 # SavePath_Sub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
 
 SavePath_rou_video: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Rou/"
 
 # Jellyfin 参数
 Jellyfin: "http://10.10.10.88:8096"
+Jellyfin_API: "57aa43e6fd3a44e7bf76a6a563bbe049"
 
 # 抓取网站用的代理
 Proxy_Fetch: "http://10.10.10.88:7890"
@@ -21,26 +22,26 @@ IsNeedDownloadProxy: "1"
 
 # 使用的下载器 (按照顺序，失败后依次切换)
 Downloader:
-  - N_m3u8DL_RE: 0
+  - N_m3u8DL_RE: 1
   - m3u8-linux-amd64: 0
-  - m3u8-Downloader-Go: 1
+  - m3u8-Downloader-Go: 2
 
-# 数据源（仅针对 AV）及调用顺序
-DataSources:
-  - name: AvBase
-    enable: 1
-    urls:
-      - "https://avbase.net"
+# # 数据源（仅针对 AV）及调用顺序
+# DataSources:
+#   - name: AvBase
+#     enable: 1
+#     urls:
+#       - "https://avbase.net"
 
-  - name: JavDB
-    enable: 0
-    urls:
-      - "https://javdb.com"
+#   - name: JavDB
+#     enable: 0
+#     urls:
+#       - "https://javdb.com"
 
-  - name: JavBus
-    enable: 0
-    urls:
-      - "https://javbus.com"
+#   - name: JavBus
+#     enable: 0
+#     urls:
+#       - "https://javbus.com"
 
 
 JAV_Video_DataSources:

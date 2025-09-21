@@ -1,12 +1,21 @@
-version: "3.9"
+# version: "3.9"
 services:
-  movie_sp:
-    image: movie_sp:latest
-    container_name: movie_sp
-    stdin_open: true   # 等价于 -it
-    tty: true          # 等价于 -it
+  Movie_SP:
+    image: movie_sp_env:latest
     volumes:
-      - /Users/super/Documents/DockerData/Movie_SP/:/home/appuser/app/
+      - /Users/super/Documents/DockerData/Movie_SP/:/app/
       - /Volumes/SATA_SSD_2T/:/DRIVE
-    working_dir: /home/appuser/app
-    command: bash   # 默认启动 bash（如果你在 Dockerfile 里 CMD 已经写了，可以省略）
+    ulimits:
+      nofile:
+        soft: 1048000
+        hard: 1048000
+
+  Jable_cnSUB:
+    image: movie_sp_env:latest
+    volumes:
+      - /Users/super/Documents/DockerData/Movie_SP/:/app/
+      - /Volumes/SATA_SSD_2T/:/DRIVE
+    ulimits:
+      nofile:
+        soft: 1048000
+        hard: 1048000

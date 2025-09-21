@@ -33,7 +33,7 @@ def apply_filters(jav_videos, actress, filter_rule, enable_scan):
     if enable_scan == 0:
         return []
     
-    # filter_rule = filter_rule or ''  # 最小修改，避免 NoneType 报错
+    filter_rule = filter_rule or ''  # 最小修改，避免 NoneType 报错
 
     date_min = None
     date_max = None
@@ -61,8 +61,8 @@ def apply_filters(jav_videos, actress, filter_rule, enable_scan):
             video_date = datetime.strptime(video['date'], "%Y.%m.%d")
             if (date_min and video_date < date_min) or (date_max and video_date > date_max):
                 continue
-
-        if any(keyword in video['id'] or keyword in video['title'] for keyword in keywords):
+        
+        if any(keyword in video['id'] or keyword in (video['title'] or "") for keyword in keywords):
             continue
 
         filtered_videos.append(video)
@@ -71,7 +71,9 @@ def apply_filters(jav_videos, actress, filter_rule, enable_scan):
 
 
 # 列出 jav_videos 并应用过滤
-def list_jav_videos(db_path):
+# def list_jav_videos(db_path):
+def list_jav_videos(db_path, target_actresses=None):
+
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -86,6 +88,10 @@ def list_jav_videos(db_path):
 
     for actress_row in actresses:
         actress = actress_row['name']
+        # 最小修改：只处理指定演员
+        if target_actresses is not None and actress not in target_actresses:
+            continue
+
         filter_rule = actress_row['filter']
         enable_scan = actress_row['enable_scan'] or 0  # 修正可能为 None
         filtered_videos = apply_filters(jav_videos, actress, filter_rule, enable_scan)
@@ -245,7 +251,11 @@ def edit_db(db_path, all_404_ids, m3u8_results):
 
 # 主函数
 def main():
-    filtered_videos = list_jav_videos(db_path)
+    # 最小修改：接收外部演员参数
+    target_actresses = sys.argv[1:] if len(sys.argv) > 1 else None
+
+    # filtered_videos = list_jav_videos(db_path)
+    filtered_videos = list_jav_videos(db_path, target_actresses)
     video_data_sources = video_fetch(cfg_path)
     has_false = process_ids(filtered_videos, video_data_sources)
 
