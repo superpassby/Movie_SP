@@ -114,7 +114,9 @@ $DOCKER_RUN python3 $PROJECT_ROOT/tools/get_id_from_url_jable.py 1 10
 "
 
 MENU[10]="上传 github|
+sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"0"/' $PROJECT_ROOT/cfg/config.yaml && \
 git add . && git commit -m 'commit' && git push -u origin main
+sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"1"/' $PROJECT_ROOT/cfg/config.yaml
 "
 
 MENU[11]="构建docker 并上传 dockerhub|

@@ -17,7 +17,7 @@ Proxy_Fetch: "http://10.10.10.88:7890"
 Proxy_Download: "http://10.10.10.88:7890"
 
 # 是否启用代理
-IsNeedFetchProxy: "1"
+IsNeedFetchProxy: 0
 IsNeedDownloadProxy: "1"
 
 # 使用的下载器 (按照顺序，失败后依次切换)
