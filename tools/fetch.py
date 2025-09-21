@@ -70,5 +70,5 @@ def fetch_html(url: str, referer: str = "") -> Optional[str]:
 # 使用示例
 # html_content = fetch_html("https://netflav.com/chinese-sub")
 
-# html_content = fetch_html("https://avbase.net/works/wanz:WAAA-576")
-# print(html_content)
+html_content = fetch_html("https://avbase.net/works/wanz:WAAA-576")
+print(html_content)

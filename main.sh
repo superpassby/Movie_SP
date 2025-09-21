@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-set -e
 
 # ================== 获取项目根目录 ==================
-# macOS / Linux 通用
-SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd)/$(basename "$0")"
-PROJECT_ROOT="$(dirname "$SCRIPT_PATH")"
+SCRIPT_PATH=$(readlink -f "$0")
+PROJECT_ROOT=$(dirname "$SCRIPT_PATH")
 
 while [ ! -d "$PROJECT_ROOT/cfg" ]; do
     PROJECT_ROOT=$(dirname "$PROJECT_ROOT")
@@ -14,23 +12,12 @@ while [ ! -d "$PROJECT_ROOT/cfg" ]; do
     fi
 done
 
-# ================== 判断运行环境 ==================
+# ================== 判断是否在 Docker 容器内 ==================
 if [ -f "/.dockerenv" ]; then
-    # 容器内直接执行
-    DOCKER_RUN=""
-elif [ "$GITHUB_ACTIONS" = "true" ]; then
-    # GitHub Actions 环境
-    # 假设 docker-compose.yaml 放在仓库根目录
-    DOCKER_RUN="docker compose -f $PROJECT_ROOT/docker-compose.yaml run --rm Movie_SP"
+    DOCKER_RUN=""  # 容器内直接执行
 else
-    # 本地 macOS / Linux
-    OS_TYPE=$(uname)
-    if [ "$OS_TYPE" = "Darwin" ]; then
-        DOCKER_BIN="/usr/local/bin/docker"
-    else
-        DOCKER_BIN="/usr/bin/docker"
-    fi
-    DOCKER_RUN="$DOCKER_BIN compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm Movie_SP"
+    DOCKER_RUN="/usr/local/bin/docker compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm Movie_SP"
+    PROJECT_ROOT=/app  # 容器内挂载路径
 fi
 
 # ================== 定义菜单 ==================
@@ -114,9 +101,9 @@ $DOCKER_RUN python3 $PROJECT_ROOT/tools/get_id_from_url_jable.py 1 10
 "
 
 MENU[10]="上传 github|
-sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"0"/' $PROJECT_ROOT/cfg/config.yaml && \
+sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"0"/' /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml
 git add . && git commit -m 'commit' && git push -u origin main
-sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"1"/' $PROJECT_ROOT/cfg/config.yaml
+sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"1"/' /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml
 "
 
 MENU[11]="构建docker 并上传 dockerhub|

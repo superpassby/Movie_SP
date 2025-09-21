@@ -8,7 +8,7 @@
   Filter:
 
 - Name: 新有菜
-  Fetch_State: "Success | 2025-09-21 14:11:20 第 15 页抓取异常，但等于最大页 15，任务正常结束 | 2025-09-21 14:11:20"
+  Fetch_State: "Failed | 2025-09-21 07:30:05 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:05"
   Individual_Movie: moodyz:MIDA-234
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -17,6 +17,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 白峰美羽
+  Fetch_State: "Failed | 2025-09-21 07:30:06 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:06"
   Individual_Movie: wanz:WAAA-576
   Only_Scan_First_Page: 0
   Enable_Scan: 1
@@ -25,6 +26,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 藤森里穗
+  Fetch_State: "Failed | 2025-09-21 07:30:07 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:07"
   Individual_Movie: dasu:DASS-551
   Only_Scan_First_Page: 0
   Enable_Scan: 1
@@ -33,7 +35,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 胡桃樱
-  Fetch_State: "Success | 2025-09-21 14:11:48 第 17 页抓取异常，但等于最大页 17，任务正常结束 | 2025-09-21 14:11:48"
+  Fetch_State: "Failed | 2025-09-21 07:30:08 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:08"
   Individual_Movie: moodyz:MIMK-245
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -42,6 +44,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 藤浦惠
+  Fetch_State: "Failed | 2025-09-21 07:30:09 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:09"
   Individual_Movie: madonna:JUR-448
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -50,6 +53,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 辻井穗乃果
+  Fetch_State: "Failed | 2025-09-21 07:30:10 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:10"
   Individual_Movie: glory:GVH-773
   Only_Scan_First_Page: 0
   Enable_Scan: 1
@@ -58,6 +62,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 三浦歩美
+  Fetch_State: "Failed | 2025-09-21 07:30:11 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:11"
   Individual_Movie: madonna:ACHJ-067
   Only_Scan_First_Page: 0
   Enable_Scan: 1
@@ -66,6 +71,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 吉永塔子
+  Fetch_State: "Failed | 2025-09-21 07:30:12 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:12"
   Individual_Movie: madonna:ROE-377
   Only_Scan_First_Page: 0
   Enable_Scan: 1
@@ -74,6 +80,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 香水純
+  Fetch_State: "Failed | 2025-09-21 07:30:13 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:13"
   Individual_Movie: honnaka:HMN-690
   Only_Scan_First_Page: 0
   Enable_Scan: 1
@@ -106,6 +113,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 潤露露
+  Fetch_State: "Failed | 2025-09-21 07:30:01 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:01"
   Individual_Movie: tameike:MFYD-041
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -114,6 +122,7 @@
   Filter: VR | > 2025.1.1
 
 - Name: 木村愛心
+  Fetch_State: "Failed | 2025-09-21 07:30:03 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:03"
   Individual_Movie: SONE-783
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -170,7 +179,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 青空光
-  Fetch_State: "Success | 2025-09-21 14:12:21 第 5 页抓取异常，但等于最大页 5，任务正常结束 | 2025-09-21 14:12:21"
   Individual_Movie: sodcreate:START-353
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -219,7 +227,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 海月紗奈
-  Fetch_State: "Success | 2025-09-21 14:12:38 第 2 页抓取异常，但等于最大页 2，任务正常结束 | 2025-09-21 14:12:38"
   Individual_Movie: moodyz:MIKR-032
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -276,7 +283,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 新妻優香
-  Fetch_State: "Success | 2025-09-21 14:12:53 第 2 页抓取异常，但等于最大页 2，任务正常结束 | 2025-09-21 14:12:53"
   Individual_Movie: madonna:JUR-422
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -341,7 +347,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 青葉春
-  Fetch_State: "Success | 2025-09-21 14:13:22 第 2 页抓取异常，但等于最大页 2，任务正常结束 | 2025-09-21 14:13:22"
   Individual_Movie: kawaii:CAWD-870
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -350,7 +355,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 篠真有
-  Fetch_State: "Success | 2025-09-21 14:13:28 第 2 页抓取异常，但等于最大页 2，任务正常结束 | 2025-09-21 14:13:28"
   Individual_Movie: SONE-894
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -359,7 +363,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 涼森玲夢
-  Fetch_State: "Success | 2025-09-21 14:13:46 第 7 页抓取异常，但等于最大页 7，任务正常结束 | 2025-09-21 14:13:46"
   Individual_Movie: prestige:ABF-255
   Only_Scan_First_Page: 1
   Enable_Scan: 1
@@ -408,7 +411,6 @@
   Filter: VR | > 2025.1.1
 
 - Name: 山田鈴奈
-  Fetch_State: "Success | 2025-09-21 14:14:07 第 2 页抓取异常，但等于最大页 2，任务正常结束 | 2025-09-21 14:14:07"
   Individual_Movie: idp:IPZZ-694
   Only_Scan_First_Page: 1
   Enable_Scan: 1
