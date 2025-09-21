@@ -22,6 +22,13 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+      - name: update_video_list
+        run: |
+          ./main.sh 3
+
+
+
+
       # # 开启 tmate 调试环境
       # - name: SSH（INPUT"q" ➡️ RUN："./mv" ➡️ “exit”）
       #   uses: mxschmitt/action-tmate@v3
