@@ -1,7 +1,7 @@
 # version: "3.9"
 services:
   Movie_SP:
-    image: movie_sp_env:latest
+    image: superpassby/movie_sp:latest
     volumes:
       - /Users/super/Documents/DockerData/Movie_SP/:/app/
       - /Volumes/SATA_SSD_2T/:/DRIVE
@@ -11,7 +11,7 @@ services:
         hard: 1048000
 
   Jable_cnSUB:
-    image: movie_sp_env:latest
+    image: superpassby/movie_sp:latest
     volumes:
       - /Users/super/Documents/DockerData/Movie_SP/:/app/
       - /Volumes/SATA_SSD_2T/:/DRIVE

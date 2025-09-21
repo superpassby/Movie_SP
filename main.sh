@@ -103,6 +103,12 @@ MENU[10]="上传 github|
 git add . && git commit -m 'commit' && git push -u origin main
 "
 
+MENU[11]="构建docker 并上传 dockerhub|
+docker build -t movie_sp_env:latest . && \
+docker tag movie_sp_env:latest superpassby/movie_sp:latest && \
+docker push superpassby/movie_sp:latest
+"
+
 # ================== 打印菜单 ==================
 echo "请选择要执行的操作："
 for key in $(echo "${!MENU[@]}" | tr ' ' '\n' | sort -n); do
