@@ -16,7 +16,15 @@ done
 if [ -f "/.dockerenv" ]; then
     DOCKER_RUN=""  # 容器内直接执行
 else
-    DOCKER_RUN="/usr/local/bin/docker compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm Movie_SP"
+    # 判断操作系统
+    OS_TYPE=$(uname)
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        DOCKER_BIN="/usr/local/bin/docker"  # macOS
+    else
+        DOCKER_BIN="/usr/bin/docker"        # Linux
+    fi
+
+    DOCKER_RUN="$DOCKER_BIN compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm Movie_SP"
     PROJECT_ROOT=/app  # 容器内挂载路径
 fi
 
