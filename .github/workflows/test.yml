@@ -22,9 +22,16 @@ jobs:
           python3 -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  
       
+      # - name: update_video_list
+      #   run: |
+      #     python3 tools/jav_num_up.py
+    
       - name: update_video_list
         run: |
+          echo "::group::执行 jav_num_up.py"
+          set -x
           python3 tools/jav_num_up.py
+          echo "::endgroup::"
 
 
       # # 开启 tmate 调试环境
