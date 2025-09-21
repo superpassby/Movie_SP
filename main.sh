@@ -101,10 +101,11 @@ $DOCKER_RUN python3 $PROJECT_ROOT/tools/get_id_from_url_jable.py 1 10
 "
 
 MENU[10]="上传 github|
-sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"0"/' /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml
+awk '{if (\$1==\"IsNeedFetchProxy:\") print \"IsNeedFetchProxy: \\\"0\\\"\"; else print}' /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml > /tmp/config.yaml.tmp && mv /tmp/config.yaml.tmp /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml
 git add . && git commit -m 'commit' && git push -u origin main
-sed -i '' 's/^\(IsNeedFetchProxy:[[:space:]]*\).*$/\1"1"/' /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml
+awk '{if (\$1==\"IsNeedFetchProxy:\") print \"IsNeedFetchProxy: \\\"1\\\"\"; else print}' /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml > /tmp/config.yaml.tmp && mv /tmp/config.yaml.tmp /Users/super/Documents/DockerData/Movie_SP/cfg/config.yaml
 "
+
 
 MENU[11]="构建docker 并上传 dockerhub|
 docker build -t movie_sp_env:latest . && \
