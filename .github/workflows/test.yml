@@ -19,14 +19,12 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+          python3 -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  
+      
       - name: update_video_list
         run: |
-          ./main.sh 3
-
-
+          python3 tools/jav_num_up.py
 
 
       # # 开启 tmate 调试环境
@@ -35,10 +33,6 @@ jobs:
 
       - name: Push Changes
         run: |
-          # 配置 Git 用户
-          #git config --global user.name "github-actions"
-          #git config --global user.email "github-actions@github.com"
-
           # 提交更改并推送到仓库的 main 分支
           git add .
           git commit -m "Sync with upstream repository" || echo "No changes to commit"
