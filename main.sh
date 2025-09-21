@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+set -e
 
 # ================== 获取项目根目录 ==================
-SCRIPT_PATH=$(readlink -f "$0")
-PROJECT_ROOT=$(dirname "$SCRIPT_PATH")
+# macOS / Linux 通用
+SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd)/$(basename "$0")"
+PROJECT_ROOT="$(dirname "$SCRIPT_PATH")"
 
 while [ ! -d "$PROJECT_ROOT/cfg" ]; do
     PROJECT_ROOT=$(dirname "$PROJECT_ROOT")
@@ -12,13 +14,14 @@ while [ ! -d "$PROJECT_ROOT/cfg" ]; do
     fi
 done
 
-# ================== 判断是否在 Docker 容器内 ==================
+# ================== 判断运行环境 ==================
 if [ -f "/.dockerenv" ]; then
     # 容器内直接执行
     DOCKER_RUN=""
 elif [ "$GITHUB_ACTIONS" = "true" ]; then
     # GitHub Actions 环境
-    DOCKER_RUN="docker compose -f docker-compose.yaml run --rm Movie_SP"
+    # 假设 docker-compose.yaml 放在仓库根目录
+    DOCKER_RUN="docker compose -f $PROJECT_ROOT/docker-compose.yaml run --rm Movie_SP"
 else
     # 本地 macOS / Linux
     OS_TYPE=$(uname)
@@ -33,6 +36,7 @@ fi
 # ================== 定义菜单 ==================
 declare -A MENU
 
+# 每个命令用相对仓库路径，Docker 挂载路径 /app
 MENU[1]="自定义命令|
 $DOCKER_RUN python3 $PROJECT_ROOT/tools/jav_data_fetch/data_AvBase.py 新有菜
 "
@@ -122,11 +126,9 @@ docker push superpassby/movie_sp:latest
 # ================== 打印菜单 ==================
 echo "请选择要执行的操作："
 for key in $(echo "${!MENU[@]}" | tr ' ' '\n' | sort -n); do
-    # 取多行内容的第一行，并截取 | 前的文字
     desc=$(echo "${MENU[$key]}" | head -n1 | cut -d'|' -f1)
     echo "$key) $desc"
 done
-
 
 # ================== 获取选择 ==================
 if [ $# -eq 0 ]; then
