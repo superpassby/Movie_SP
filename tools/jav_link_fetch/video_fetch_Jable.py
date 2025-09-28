@@ -1,214 +1,105 @@
 import sys
-import re
-from bs4 import BeautifulSoup
 from pathlib import Path
+from bs4 import BeautifulSoup
+import re
+import yaml
 
-# ------------------ 动态添加项目根目录 ------------------
-# 1. 获取当前脚本文件路径
+
+# 获取当前脚本路径
 CURRENT_FILE = Path(__file__).resolve()
 
-# 2. 找到项目根目录（假设项目根目录下有 cfg 目录）
+# 找到项目根目录（假设项目根目录下有 cfg 目录）
 PROJECT_ROOT = next(p for p in CURRENT_FILE.parents if (p / "cfg").exists())
 
-# 3. 将项目根目录加入 Python 模块搜索路径
+# 将项目根目录加入 sys.path
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
-# ------------------ 导入项目模块 ------------------
-from tools.fetch import fetch_html, config
 
-# print("config:", config)
+# 现在可以导入 tools.fetch
+from tools.fetch import fetch_html
 
+CONFIG_FILE = PROJECT_ROOT / "cfg" / "config.yaml"
 
+# 直接加载 YAML 文件
+with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+    config = yaml.safe_load(f)
 
-# ------------------ 正式函数 ------------------
-
-def parse_page(html):
-    if not html:
-        print("[ERROR] 页面内容为空，跳过解析")
-        return {
-            "title": "",
-            "actress_name": "",
-            "avatar_url": "",
-            "poster_url": "",
-            "m3u8_url": "false",
-            "tag_list": "",
-            "download_path": "",
-            "chinese_sub": ""
-        }
-    soup = BeautifulSoup(html, 'html.parser')
-    title = ""
-    actress_name = ""
-    avatar_url = ""
-    poster_url = ""
-    tag_list = ""
-    download_path = ""
-    chinese_sub = ""
-
-
-
-
-
-    # 提取title、actress_name、avatar_url
-    # 定位到 <div class="info-header">
-    info_header = soup.find('div', class_='info-header')
-    if info_header:
-        # 提取 <h4> title
-        h4_tag = info_header.find('h4')
-        if h4_tag:
-            title = h4_tag.get_text().strip()
-        # else:
-        #     title = ""
-
-        # 提取 <img> 的 title 属性和 src 属性
-        img_tag = info_header.find('img', class_='avatar rounded-circle')
-        if img_tag:
-            actress_name = img_tag['title']
-            avatar_url = img_tag['src']
-        # else:
-        #     actress_name = ''
-        #     avatar_url = ''
-
-        # print("title:", title)
-        # print("actress_name:", actress_name)
-        # print("avatar_url:", avatar_url)
-    # else:
-    #     print("未找到 info-header 区域")
-
-    # 提取 m3u8 相关信息
-    # 定位到 <div id="site-content" class="site-content">
-    site_content = soup.find('div', id='site-content')
-    if site_content:
-        # 提取 <video> 的 poster 属性
-        video_tag = site_content.find('video', attrs={'poster': re.compile(r'^http.*')})
-        if video_tag:
-            poster_url = video_tag.get('poster', '')
-        # else:
-        #     poster_url = ''
-
-        # 提取 <script> 中的 hlsUrl
-        script_tag = site_content.find('script', string=re.compile(r'var\s+hlsUrl'))
-        if script_tag:
-            # 使用正则表达式匹配 hlsUrl
-            match = re.search(r"var\s+hlsUrl\s*=\s*['\"]([^'\"]+)['\"]", script_tag.string)
-            m3u8_url = match.group(1) if match else ''
-        else:
-            m3u8_url = 'false'
-
-        # print("poster_url:", poster_url)
-        # print("m3u8_url:", m3u8_url)
-    else:
-        # 检查是否为 404 页面
-        title_tag = soup.find('title')
-        if title_tag and title_tag.get_text().strip() == '404 Not Found':
-            m3u8_url = '404'
-        else:
-            m3u8_url = 'false'
-
-        # print("未找到 site-content 区域")
-        # print("poster_url:", '未知')
-        # print("m3u8_url:", m3u8_url)
-
-    # 提取Tags
-    # 定位到 <h5 class="tags h6-md">
-    tags_h5 = soup.find('h5', class_='tags h6-md')
-    if tags_h5:
-        # 提取所有 <a> Tags的文本
-        tag_links = tags_h5.find_all('a')
-        if tag_links:
-            # tag_list = [tag.get_text().strip() for tag in tag_links]
-            tag_list = ", ".join(tag.get_text().strip() for tag in tag_links)
-        else:
-            tag_list = ['未知']
-
-        # print("Tags:", ', '.join(tag_list))
-        
-        # 检查 m3u8_url 是否为 'false' 或 '404'，决定Download_Path
-        if m3u8_url in ('false', '404'):
-            download_path = ''  # 表示无下载路径
-        else:
-            # 检查Tags中是否包含“中文字幕”，输出对应Download_Path
-            if '中文字幕' in tag_list:
-                download_path = config['SavePath_Sub']
-                chinese_sub = 1
-            else:
-                download_path = config['SavePath_noSub']
-                chinese_sub = 0
-
-    return {
-        "title": title,
-        "actress_name": actress_name,
-        "avatar_url": avatar_url,
-        "poster_url": poster_url,
-        "m3u8_url": m3u8_url,
-        "tag_list": tag_list,
-        "download_path": download_path,
-        "chinese_sub": chinese_sub     
-    }
-
-# # ------------------ 正式 ------------------
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python3 tools/jav_link_fetch/video_fetch_Jable.py <video_id>")
-        sys.exit(1)
-
-    video_id = sys.argv[1].strip()
-    
-    # video_id = 'apaa-383'
-    
-    # 从 config 中获取 的 URL
+def get_base_url(source_name: str):
+    """
+    根据输入的 source_name（如 'Jable'）获取 base_url
+    如果未配置则返回 None
+    """
     entry = next(
-        (d for d in config['JAV_Video_DataSources'] if d.get('name') == 'Jable'),
+        (d for d in config.get('JAV_Video_DataSources', []) if d.get('name') == source_name),
         None
     )
     if not entry or not entry.get('urls'):
-        print("[ERROR] Jable URL 未配置！")
-        sys.exit(1)
+        print(f"[ERROR] {source_name} URL 未配置！")
+        return None
 
     base_url = entry['urls'][0].rstrip("/")
+    return base_url
 
-    url = f"{base_url}/{video_id}/"
 
-    html = fetch_html(url)
+def parse_video_info(html: str):
+    
+    soup = BeautifulSoup(html, "html.parser")
 
-    result = parse_page(html)
+    # 1. site-content 是否存在
+    site_content = soup.select_one("#site-content")
+    if not site_content:
+        m3u8_url = "false"
+        chinese_sub = ""   # 没有 m3u8，就返回空
+        return m3u8_url, chinese_sub
 
-    print("title_jable:", result.get("title", ""))
-    print("actress_name_jable:", result.get("actress_name", ""))
-    print("avatar_url_jable:", result.get("avatar_url", ""))
-    print("poster_url_jable:", result.get("poster_url", ""))
-    print("m3u8_url_jable:", result.get("m3u8_url", "false"))
-    print("tags_jable:", result.get("tag_list", ""))
-    print("download_path:", result.get("download_path", ""))
-    print("chinese_sub:", result.get("chinese_sub", ""))
+    # 2.1 默认值
+    m3u8_url = "404"      # 默认没有找到 m3u8
+    chinese_sub = ""      # 没有 m3u8，就返回空
 
-# # ------------------ 测试 ------------------
-# def main():
-#     # HTML 文件路径，可以改成你需要解析的文件
-#     html_dir = PROJECT_ROOT / "test_html" / "Jable"
-#     html_files = ["404.html", "cn_sub.html", "cloudflare.html", "nosub.html"]
+    # 2.2 查找 m3u8
+    scripts = site_content.find_all("script")
+    for s in scripts:
+        if s.string:
+            match = re.search(r"var\s+hlsUrl\s*=\s*'([^']+\.m3u8)'", s.string)
+            if match:
+                m3u8_url = match.group(1)
+                chinese_sub = 0   # 找到 m3u8，才去判定字幕
+                break
 
-#     for filename in html_files:
-#         html_path = html_dir / filename
-#         if not html_path.exists():
-#             print(f"[WARN] 文件不存在: {html_path}")
-#             continue
+    # 2.3 查找 chinese-subtitle (只有找到 m3u8 才执行)
+    if isinstance(chinese_sub, int):  # 说明找到了 m3u8
+        text_center = site_content.select_one("div.text-center")
+        if text_center:
+            links = text_center.find_all("a", href=True)
+            for a in links:
+                if "chinese-subtitle" in a["href"]:
+                    chinese_sub = 1
+                    break
 
-#         # 读取本地 HTML
-#         html = html_path.read_text(encoding="utf-8")
+    return m3u8_url, chinese_sub
 
-#         print(f"\n=== 解析文件: {filename} ===")
-#         parse_page(html)
 
-#         result = parse_page(html)
+def get_video_info_jable(video_id: str, source: str = "Jable"):
+    """
+    输入 video_id，输出 m3u8_url 和 chinese_sub
+    """
+    base_url = get_base_url(source)
+    if not base_url:
+        m3u8_url = "false"   # 显式赋值
+        chinese_sub = ""     # 显式赋值
+        return m3u8_url, chinese_sub
 
-#         print("title_jable:", result.get("title", ""))
-#         print("actress_name_jable:", result.get("actress_name", ""))
-#         print("avatar_url_jable:", result.get("avatar_url", ""))
-#         print("poster_url_jable:", result.get("poster_url", ""))
-#         print("m3u8_url_jable:", result.get("m3u8_url", "false"))
-#         print("tags_jable:", result.get("tag_list", ""))
-#         print("download_path:", result.get("download_path", ""))
-#         print("chinese_sub:", result.get("chinese_sub", ""))
+    url_works = f"{base_url}/videos/{video_id.lower()}/"
+    html_works = fetch_html(url_works)
 
+    m3u8_url, chinese_sub = parse_video_info(html_works)
+    return m3u8_url, chinese_sub
+
+
+# =================== 测试 main ===================
 if __name__ == "__main__":
-    main()
+    video_id = "SONE-967"
+    m3u8_url, chinese_sub = get_video_info_jable(video_id)
+
+    print(f"m3u8_url = {m3u8_url}")
+    print(f"chinese_sub = {chinese_sub}")

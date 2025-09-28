@@ -1,446 +1,782 @@
-# Filter: VR | > 2025.1.1
+# Download: 2024.1.1
+# Filter: VR | > 2000.1.1 VR | > 2025.6.1 | < 2025.9.1
 - Name: Jable_cnSUB
   Individual_Movie: null
-  Only_Scan_First_Page: 1
-  Enable_Scan: 0
+  Only_Scan_First_Page: 0
+  Enable_Scan: 1
   Max_Actress_Count: 99
-  Enable_Download: 0
-  Filter:
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+# - Name: XXXX
+#   Individual_Movie: XXXX
+#   Only_Scan_First_Page: 0
+#   Enable_Scan: 1
+#   Max_Actress_Count: 10
+#   Enable_Download: 1
+#   Filter: VR | > 2000.1.1
+
+- Name: MINAMO
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:08 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:08"
+  Individual_Movie: sodcreate:START-361
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 未步奈奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:11 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:11"
+  Individual_Movie: SONE-854
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 泉百華
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:14 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:14"
+  Individual_Movie: moodyz:MIDA-331
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 小野六花
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:18 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:18"
+  Individual_Movie: moodyz:MIDA-306
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 神宮寺奈緒
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:21 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:21"
+  Individual_Movie: moodyz:MIDA-271
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: Unpai
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:24 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:24"
+  Individual_Movie: moodyz:MIDA-320
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 七澤米亞
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:27 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:27"
+  Individual_Movie: moodyz:MIDA-324
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: Himari
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:30 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:30"
+  Individual_Movie: moodyz:MIDA-321
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 廣瀨百合
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:33 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:33"
+  Individual_Movie: attackers:SAME-200
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  # Filter: VR | > 2000.1.1 VR | > 2025.6.1 | < 2025.9.1
+  Filter: VR | > 2000.1.1
 
 - Name: 新有菜
-  Fetch_State: "Failed | 2025-09-21 07:30:05 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:05"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:01:42 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:01:42"
   Individual_Movie: moodyz:MIDA-234
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  # Filter: VR | > 2000.1.1 VR | > 2025.6.1 | < 2025.9.1
+  Filter: VR | > 2000.1.1
 
 - Name: 白峰美羽
-  Fetch_State: "Failed | 2025-09-21 07:30:06 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:06"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:01:52 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:01:52"
   Individual_Movie: wanz:WAAA-576
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 藤森里穗
-  Fetch_State: "Failed | 2025-09-21 07:30:07 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:07"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:01:59 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:01:59"
   Individual_Movie: dasu:DASS-551
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 胡桃樱
-  Fetch_State: "Failed | 2025-09-21 07:30:08 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:08"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:06 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:06"
   Individual_Movie: moodyz:MIMK-245
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 藤浦惠
-  Fetch_State: "Failed | 2025-09-21 07:30:09 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:09"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:14 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:14"
   Individual_Movie: madonna:JUR-448
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 辻井穗乃果
-  Fetch_State: "Failed | 2025-09-21 07:30:10 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:10"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:21 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:21"
   Individual_Movie: glory:GVH-773
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 三浦歩美
-  Fetch_State: "Failed | 2025-09-21 07:30:11 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:11"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:29 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:29"
   Individual_Movie: madonna:ACHJ-067
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 吉永塔子
-  Fetch_State: "Failed | 2025-09-21 07:30:12 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:12"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:35 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:35"
   Individual_Movie: madonna:ROE-377
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 香水純
-  Fetch_State: "Failed | 2025-09-21 07:30:13 获取第 1 页失败: Incoming markup is of an invalid type: None. Markup must be a string, a bytestring, or an open filehandle. | 2025-09-21 07:30:13"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:42 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:42"
   Individual_Movie: honnaka:HMN-690
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 宮下玲奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:50 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:50"
   Individual_Movie: moodyz:MIDA-241
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 大谷双葉
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:02:57 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:02:57"
   Individual_Movie: tameike:MFYD-010
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 五日市芽依
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:05 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:05"
   Individual_Movie: dasu:DASS-722
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 潤露露
-  Fetch_State: "Failed | 2025-09-21 07:30:01 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:01"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:13 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:13"
   Individual_Movie: tameike:MFYD-041
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 木村愛心
-  Fetch_State: "Failed | 2025-09-21 07:30:03 获取第 1 页失败: 没有找到演员页的网址后缀 | 2025-09-21 07:30:03"
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:19 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:19"
   Individual_Movie: SONE-783
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 五条恋
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:26 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:26"
   Individual_Movie: SONE-888
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 橘瑪麗
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:34 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:34"
   Individual_Movie: dasu:DASS-715
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 丸最稀有
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:42 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:42"
   Individual_Movie: dasu:DASS-726
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 佐佐木紗希
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:50 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:50"
   Individual_Movie: idp:IPZZ-661
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 朝日莉緒
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:03:57 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:03:57"
   Individual_Movie: moodyz:MIKR-033
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 美園和花
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:07 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:07"
   Individual_Movie: moodyz:MNGS-013
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 青空光
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:14 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:14"
   Individual_Movie: sodcreate:START-353
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 一色桃子
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:21 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:21"
   Individual_Movie: madonna:ROE-359
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 長濱蜜璃
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:28 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:28"
   Individual_Movie: idp:IPZZ-654
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 楓可憐
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:35 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:35"
   Individual_Movie: idp:IPZZ-484
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 石川澪
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:43 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:43"
   Individual_Movie: moodyz:MIDA-257
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 八掛海
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:51 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:51"
   Individual_Movie: prestige:ABF-193
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 海月紗奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:04:58 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:04:58"
   Individual_Movie: moodyz:MIKR-032
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: Miru
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:05 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:05"
   Individual_Movie: SONE-830
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 伊藤舞雪
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:12 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:12"
   Individual_Movie: kawaii:CAWD-860
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 河北彩伽
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:19 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:19"
   Individual_Movie: SONE-853
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 東實果
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:26 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:26"
   Individual_Movie: SONE-878
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 三田真鈴
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:35 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:35"
   Individual_Movie: SONE-887
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 藤咲舞
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:43 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:43"
   Individual_Movie: idp:IPZZ-695
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 新妻優香
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:51 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:51"
   Individual_Movie: madonna:JUR-422
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 雨宮響
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:05:57 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:05:57"
   Individual_Movie: wanz:WAAA-561
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 七森莉莉
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:05 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:05"
   Individual_Movie: SONE-902
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 夏目玲香
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:12 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:12"
   Individual_Movie: madonna:JUR-476
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 小花暖
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:19 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:19"
   Individual_Movie: madonna:JUR-411
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 櫻空桃
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:27 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:27"
   Individual_Movie: idp:IPZZ-651
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 明里紬
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:35 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:35"
   Individual_Movie: premium:PRED-795
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 北野未奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:42 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:42"
   Individual_Movie: dreamticket:UFD-079
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 青葉春
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:50 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:50"
   Individual_Movie: kawaii:CAWD-870
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 篠真有
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:06:56 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:06:56"
   Individual_Movie: SONE-894
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 涼森玲夢
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:36 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:36"
   Individual_Movie: prestige:ABF-255
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 沖宮那美
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:39 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:39"
   Individual_Movie: madonna:JUR-475
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 波多野結衣
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:12:42 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:12:42"
   Individual_Movie: moodyz:MIAB-541
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 倉木華
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:18 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:18"
   Individual_Movie: SONE-861
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 仲村美羽
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:23 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:23"
   Individual_Movie: moodyz:MIDA-292
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 桃園怜奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:27 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:27"
   Individual_Movie: madonna:JUR-049
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 山田鈴奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:30 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:30"
   Individual_Movie: idp:IPZZ-694
   Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 二羽紗愛
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:33 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:33"
   Individual_Movie: alicejapan:DVAJ-705
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 小島南
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:36 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:36"
   Individual_Movie: madonna:JUR-340
-  Only_Scan_First_Page: 0
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
 
 - Name: 凪光
-  Individual_Movie: SONE-340
-  Only_Scan_First_Page: 0
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:39 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:39"
+  Individual_Movie: SSIS-742
+  Only_Scan_First_Page: 1
   Enable_Scan: 1
   Max_Actress_Count: 10
   Enable_Download: 1
-  Filter: VR | > 2025.1.1
+  Filter: VR | > 2000.1.1
+
+- Name: 楪可憐
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:43 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:43"
+  Individual_Movie: premium:PRED-800
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 真希泉
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:46 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:46"
+  Individual_Movie: msvideo:MVSD-654
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 鈴之家鈴
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:49 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:49"
+  Individual_Movie: honnaka:HMN-726
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 乙愛麗絲
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:52 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:52"
+  Individual_Movie: MKMP-659
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 瀨戶環奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:55 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:55"
+  Individual_Movie: SONE-846
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 森日向子
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:10:58 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:10:58"
+  Individual_Movie: moodyz:MIKR-031
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 椎名七海
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:03 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:03"
+  Individual_Movie: msvideo:MVSD-655
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 福原美奈
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:06 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:06"
+  Individual_Movie: fitch:JUFE-594
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 七瀨愛麗絲
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:09 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:09"
+  Individual_Movie: dasu:DASS-709
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 宍戶里帆
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:12 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:12"
+  Individual_Movie: fitch:JUFE-595
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 天宮花南
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:15 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:15"
+  Individual_Movie: moodyz:MIDA-312
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 城崎百瀨
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:18 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:18"
+  Individual_Movie: madonna:JUR-460
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 楓富愛
+  Last_Page: "1"
+  Fetch_State: "Success | 2025-09-27 16:11:21 第 1 页抓取正常，任务正常结束 | 2025-09-27 16:11:21"
+  Individual_Movie: SONE-880
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
+
+- Name: 佐山愛
+  Last_Page: "32"
+  Fetch_State: "Success | 2025-09-27 16:12:04 第 32 页抓取异常，但等于最大页 32，任务正常结束 | 2025-09-27 16:12:04"
+  Individual_Movie: moodyz:MIMK-062
+  Only_Scan_First_Page: 1
+  Enable_Scan: 1
+  Max_Actress_Count: 10
+  Enable_Download: 1
+  Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -448,7 +784,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -456,7 +792,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -464,7 +800,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -472,7 +808,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -480,7 +816,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -488,7 +824,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -496,7 +832,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -504,7 +840,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -512,7 +848,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -520,7 +856,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -528,7 +864,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -536,7 +872,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -544,7 +880,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -552,7 +888,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -560,7 +896,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -568,7 +904,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -576,7 +912,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -584,7 +920,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -592,7 +928,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -600,7 +936,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -608,7 +944,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -616,7 +952,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -624,7 +960,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -632,7 +968,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -640,7 +976,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX
@@ -648,119 +984,7 @@
 #   Enable_Scan: 1
 #   Max_Actress_Count: 10
 #   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
-
-# - Name: XXXX
-#   Individual_Movie: XXXX
-#   Only_Scan_First_Page: 0
-#   Enable_Scan: 1
-#   Max_Actress_Count: 10
-#   Enable_Download: 1
-#   Filter: VR | > 2025.1.1
+#   Filter: VR | > 2000.1.1
 
 # - Name: XXXX
 #   Individual_Movie: XXXX

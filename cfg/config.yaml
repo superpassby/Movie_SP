@@ -1,14 +1,14 @@
 # 视频存储位置
-SavePath_Sub: "/DRIVE/000-Movie_SP/000-JAV/"
-SavePath_noSub: "/DRIVE/000-Movie_SP/000-JAV/"
-DRIVE_Path: "/Volumes/SATA_SSD_2T/"
-# SavePath_Sub: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+# SavePath_Sub: "/Volumes/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+# SavePath_noSub: "/Volumes/SATA_SSD_2T/000-Movie_SP/000-JAV/"
+SavePath_Sub: "/Volumes/NVME_2T/000-Movie_SP/000-JAV/"
+SavePath_noSub: "/Volumes/NVME_2T/000-Movie_SP/000-JAV/"
 
 SavePath_rou_video: "/mnt/mac/SATA_SSD_2T/000-Movie_SP/000-Rou/"
 
 # Jellyfin 参数
 Jellyfin: "http://10.10.10.88:8096"
-Jellyfin_API: "57aa43e6fd3a44e7bf76a6a563bbe049"
+Jellyfin_API: "3b8817d8447242e1886b99f6d6ef5b40"
 
 # 抓取网站用的代理
 Proxy_Fetch: "http://10.10.10.88:7890"
@@ -18,6 +18,11 @@ Proxy_Download: "http://10.10.10.88:7890"
 
 # 是否启用代理
 IsNeedFetchProxy: "0"
+
+# FetchMode: "local_chrome"  # 可选: local_chrome, playwright_chromium, curl_cffi
+FetchMode: "playwright_chromium"  # 可选: local_chrome, playwright_chromium, curl_cffi
+# FetchMode: "curl_cffi"  # 可选: local_chrome, playwright_chromium, curl_cffi
+
 IsNeedDownloadProxy: "1"
 
 # 使用的下载器 (按照顺序，失败后依次切换)
@@ -48,7 +53,7 @@ JAV_Video_DataSources:
   - name: Jable
     order: 1
     urls:
-      - "https://jable.tv/videos"
+      - "https://jable.tv"
 
   - name: NetFlav
     order: 0

@@ -16,13 +16,24 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 # ------------------ 导入其它模块 ------------------
-from tools.fetch import fetch_html
+# from tools.fetch import fetch_html
+from tools.fetch import fetch_html_curl
+
+fetch_html = fetch_html_curl
+
+from switch_clash import switch_clash_group
 db_path = PROJECT_ROOT / "db" / "data.db"
 
 # ------------------- 定义异常类 -------------------
 class NotFoundError(Exception):
     """自定义异常: 未找到演员页网址后缀"""
     pass
+
+def update_proxy():
+    test_group = "自定义代理"
+    test_filter = "|jp 日本"
+    test_url_key = "jable"
+    switch_clash_group(test_group, test_filter, test_url_key)
 
 # ------------------- 根据演员名称获取 individual_movie 字段 -------------------
 def get_individual_movie_by_name(name):
@@ -122,13 +133,14 @@ def get_max_page(html):
 
 
 # ---------- 处理 JSON 数据 ----------
-def process_json_data(json_data):
+def process_json_data_list(json_data):
     # 加载模块
     import json
     from datetime import datetime
 
     # 访问 primary 下的 name 字段，使用 get() 方法防止 KeyError
     primary_name = json_data['props']['pageProps']['talent']['primary'].get('name', '')
+    # print(json.dumps(json_data['props']['pageProps'], indent=2, ensure_ascii=False))
 
     # 提取所有演员的 name，使用 get() 方法防止 KeyError
     actors_names = [actor.get('name', '') for actor in json_data['props']['pageProps']['talent'].get('actors', [])]
@@ -146,9 +158,16 @@ def process_json_data(json_data):
 
     # 提取演员的基本信息，确保每个字段都可以安全获取
     try:
-        fanza_meta = json_data['props']['pageProps']['talent']['actors'][0].get('meta', {}).get('fanza', {})
+        actors = json_data['props']['pageProps']['talent'].get('actors', [])
+        actor0 = actors[0] if actors else None
+
+        fanza_meta = {}
+        if actor0 and isinstance(actor0, dict):  # 确认 actor0 存在且是字典
+            meta = actor0.get('meta') or {}
+            fanza_meta = meta.get('fanza') or {}
+
         actor_info = {
-            'aka': aka,  # 将 aka 放入 actor_info 中
+            'aka': aka,
             'birthday': fanza_meta.get('birthday', ''),
             'height': fanza_meta.get('height', ''),
             'bust': fanza_meta.get('bust', ''),
@@ -156,8 +175,8 @@ def process_json_data(json_data):
             'hip': fanza_meta.get('hip', ''),
             'cup': fanza_meta.get('cup', '')
         }
-    except IndexError:
-        actor_info = {'aka': aka}  # 如果演员列表为空，至少返回 aka
+    except Exception:
+        actor_info = {'aka': aka}
 
     # 提取 works 数据，确保每个字段都可以安全获取
     works_info = []
@@ -187,11 +206,11 @@ def process_json_data(json_data):
         'works_info': works_info
     }
 
-# # def process_json_data(json_data) 示例用法 用本地文件 test.json ，和本函数同一目录：
+# # def process_json_data_list(json_data) 示例用法 用本地文件 test.json ，和本函数同一目录：
 # with open('test.json', 'r', encoding='utf-8') as file:
 #     json_data = json.load(file)
 
-# result = process_json_data(json_data)
+# result = process_json_data_list(json_data)
 
 # # 打印结果
 # print("Actor Info:")
@@ -236,7 +255,7 @@ def process_json_data(json_data):
 
 #     # JSON 数据
 #     json_data = parse_next_data(html_talents_page)
-#     result = process_json_data(json_data)
+#     result = process_json_data_list(json_data)
 
 #     # 返回所有需要的信息
 #     return {
@@ -274,6 +293,10 @@ def fetch_actor_data(input_name, page=1):
         url_works = f"{base_url}/works/{individual_movie}"
         html_works = fetch_html(url_works)
 
+        # 检查html_works是否成功获取内容
+        if not html_works:
+            update_proxy()
+
         # 演员页后缀
         talent_suffix = extract_talent_suffix(html_works)
 
@@ -287,6 +310,8 @@ def fetch_actor_data(input_name, page=1):
     # 构造演员页 URL
     base_url = "https://avbase.net"
     url_talents_page = f"{base_url}/talents/{talent_suffix}?q=&page={page}"
+
+
     html_talents_page = fetch_html(url_talents_page)
 
     # 最大页数
@@ -294,7 +319,7 @@ def fetch_actor_data(input_name, page=1):
 
     # JSON 数据
     json_data = parse_next_data(html_talents_page)
-    result = process_json_data(json_data)
+    result = process_json_data_list(json_data)
 
     return {
         "max_page": max_page,
@@ -304,7 +329,7 @@ def fetch_actor_data(input_name, page=1):
 
 
 
-# ------------------ main 仅用于直接运行 ------------------
+# ------------------ main1 仅用于直接运行 ------------------
 def main():
 
     # if len(sys.argv) < 2:
@@ -314,7 +339,7 @@ def main():
     # input_name = sys.argv[1].strip()
     # page = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 
-    input_name = "新有菜"  # 替换为实际名称
+    input_name = "凪光"  # 替换为实际名称
     page= 3
 
     try:
@@ -341,7 +366,49 @@ def main():
         print("错误:", e)
 
 
+
+
+
+
+# ------------------ main2c 仅用于直接运行 ------------------
+
+# def main():
+#     # 用本地 test.html 作为输入
+#     file_path = "test.html"
+#     with open(file_path, "r", encoding="utf-8") as f:
+#         html_talents_page = f.read()
+
+#     # 获取最大页数
+#     max_page = get_max_page(html_talents_page)
+
+#     # 解析 JSON
+#     json_data = parse_next_data(html_talents_page)
+#     result = process_json_data_list(json_data)
+
+#     # 打印结果
+#     print("\n" + "-" * 30 + "\n")
+#     print("Actor Info:")
+#     for key, value in result['actor_info'].items():
+#         print(f"{key.capitalize()}: {value}")
+
+#     print("\n" + "-" * 30 + "\n")
+#     print("Works Info:")
+#     print("\n" + "-" * 30 + "\n")
+#     for work in result['works_info']:
+#         print(f"Work ID: {work['work_id']}")
+#         print(f"Title: {work['title']}")
+#         print(f"Issue Date: {work['issue_date']}")
+#         print(f"Actors Names: {work['actors_names']}")
+#         print(f"Actors Count: {work['actors_count']}")
+#         print("\n" + "-" * 30 + "\n")
+
+#     print(f"[INFO] 最大页数: {max_page}\n")
+
+
+
+
+
+
+
 if __name__ == "__main__":
     main()
-
-

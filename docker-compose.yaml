@@ -1,20 +1,22 @@
 # version: "3.9"
 services:
   Movie_SP:
-    image: superpassby/movie_sp:latest
+    image: movie_sp_env:latest
     volumes:
       - /Users/super/Documents/DockerData/Movie_SP/:/app/
-      - /Volumes/SATA_SSD_2T/:/DRIVE
+      - /Volumes/SATA_SSD_2T/:/Volumes/SATA_SSD_2T/
+      - /Volumes/NVME_2T/:/Volumes/NVME_2T/    
     ulimits:
       nofile:
         soft: 1048000
         hard: 1048000
 
   Jable_cnSUB:
-    image: superpassby/movie_sp:latest
+    image: movie_sp_env:latest
     volumes:
       - /Users/super/Documents/DockerData/Movie_SP/:/app/
-      - /Volumes/SATA_SSD_2T/:/DRIVE
+      - /Volumes/SATA_SSD_2T/:/Volumes/SATA_SSD_2T/
+      - /Volumes/NVME_2T/:/Volumes/NVME_2T/   
     ulimits:
       nofile:
         soft: 1048000

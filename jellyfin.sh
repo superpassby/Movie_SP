@@ -12,8 +12,6 @@ while [ ! -d "$PROJECT_ROOT/cfg" ]; do
     fi
 done
 
-
-
 CONFIG_FILE="$PROJECT_ROOT/cfg/config.yaml"
 
 # 读取 Jellyfin 配置
@@ -21,15 +19,20 @@ JELLYFIN_URL=$(grep -E '^\s*Jellyfin:' "$CONFIG_FILE" | sed 's/.*: "\(.*\)"/\1/'
 API_KEY=$(grep -E '^\s*Jellyfin_API:' "$CONFIG_FILE" | sed 's/.*: "\(.*\)"/\1/')
 
 SAVE_SUB=$(grep -E '^\s*SavePath_Sub:' "$CONFIG_FILE" | sed 's/.*: "\(.*\)"/\1/')
-DRIVE_PATH=$(grep -E '^\s*DRIVE_Path:' "$CONFIG_FILE" | sed 's/.*: "\(.*\)"/\1/')
+# DRIVE_PATH=$(grep -E '^\s*DRIVE_Path:' "$CONFIG_FILE" | sed 's/.*: "\(.*\)"/\1/')
 
-SAVE_PATH_REAL="${DRIVE_PATH}${SAVE_SUB#/DRIVE/}"
+echo $SAVE_SUB
+
+# SAVE_PATH_REAL="${DRIVE_PATH}${SAVE_SUB#/DRIVE/}"
+
+SAVE_PATH_REAL="${SAVE_SUB}"
+
 
 MRGX="每日更新"
+JXSC="精选收藏"
 HJ="合集"
 MRGX_TMP="${SAVE_PATH_REAL}每日更新_待删除"
-
-mkdir -p "$MRGX_TMP"
+JXSC_PATH="${SAVE_PATH_REAL}精选收藏"  # 重新定义，确保没有特殊字符
 
 
 # 获取媒体库 ID
@@ -54,7 +57,9 @@ echo $MRGX_TMP
 
 
 move_watched_unfavorite() {
-    echo "执行删除操作：移动已观看且未收藏的媒体到 $MRGX_TMP"
+    echo "执行移动操作：移动已观看且未收藏的媒体到 $MRGX_TMP"
+
+    mkdir -p "$MRGX_TMP"
 
     folders_to_delete=$(curl -s -G "${JELLYFIN_URL}/Users/${USER_ID}/Items" \
         -H "X-Emby-Token: ${API_KEY}" \
@@ -84,11 +89,49 @@ move_watched_unfavorite() {
         fi
 
         echo "移动文件夹: $target_dir -> $dest"
-        # mv "$target_dir" "$dest"
+        mv "$target_dir" "$dest"
     done
 
     echo "删除操作完成！"
 }
+
+
+move_favorites() {
+    echo "执行移动操作：移动已收藏的媒体到 $JXSC_PATH"
+    mkdir -p "$JXSC_PATH"
+
+    folders_to_move=$(curl -s -G "${JELLYFIN_URL}/Users/${USER_ID}/Items" \
+        -H "X-Emby-Token: ${API_KEY}" \
+        --data-urlencode "Recursive=true" \
+        --data-urlencode "ParentId=${MRGX}" \
+        --data-urlencode "fields=Path,UserData" \
+    | jq -r '.Items[] | select(.UserData.IsFavorite == true) | .Path')
+
+    for path in $folders_to_move; do
+        target_dir=$(dirname "$path")
+
+        # 保护措施：不要移动媒体库根目录
+        if [ "$target_dir" = "$SAVE_PATH_REAL" ]; then
+            echo "⚠️ 跳过媒体库根目录: $target_dir"
+            continue
+        fi
+
+        folder_name=$(basename "$target_dir")
+        dest="$JXSC_PATH/$folder_name"  # 修改目标路径为 JXSC_PATH
+
+        # # 如果目标已存在，加时间戳
+        # if [ -e "$dest" ]; then
+        #     timestamp=$(date +%s)
+        #     dest="${JXSC_PATH}/${folder_name}_$timestamp"
+        # fi
+
+        echo "移动文件夹: $target_dir -> $dest"
+        mv "$target_dir" "$dest"
+    done
+
+    echo "收藏的媒体已成功移动到 $JXSC_PATH！"
+}
+
 
 
 
@@ -107,7 +150,7 @@ ACTION="${1:-}"
 
 if [ -z "$ACTION" ]; then
     echo "请选择操作:"
-    echo "1) 删除已观看且未收藏的媒体"
+    echo "1) 移动已观看且未收藏的媒体"
     echo "2) 移动已收藏的媒体"
     read -rp "请输入 1 或 2: " ACTION
 fi

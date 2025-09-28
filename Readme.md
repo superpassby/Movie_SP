@@ -8,9 +8,20 @@ fi
 
 
 
+python3 -m venv venv
+
+source venv/bin/activate
 
 
 
+/usr/local/bin/docker compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm Movie_SP python3
+
+
+
+# 删除所有 nfo jpg
+find /Volumes/NVME_2T/000-Movie_SP /Volumes/SATA_SSD_2T/000-Movie_SP \
+  -type f \( -name "*.nfo" -o -name "*.jpg" \) \
+  -delete
 
 
 state：
@@ -26,7 +37,7 @@ state：
 2、写入 数据库的 通用函数 输入要写入 的 表 列的数据 返回 等待时间 启用文件锁，自动增加列
 3、下载的公共函数 输入 下载链接 保存位置，文件名 返回 下载 文件锁，记录下载文件名 可多开下载
 
-
+libicu-dev
 ```
 # 确保拉取最新代码
 git checkout main
@@ -53,7 +64,7 @@ docker push superpassby/movie_sp:latest
 
 
 
-docker compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm movie_sp
+docker compose -f /Users/super/Documents/DockerData/Movie_SP/docker-compose.yaml run --rm Movie_SP
 
 
 

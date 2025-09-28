@@ -2,39 +2,63 @@ import sqlite3
 import yaml
 import subprocess
 import sys
-
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
+import concurrent.futures
+import threading
 
 # ------------------ 动态添加项目根目录 ------------------
 CURRENT_FILE = Path(__file__).resolve()
 PROJECT_ROOT = next(p for p in CURRENT_FILE.parents if (p / "cfg").exists())
 
+# 将项目根目录加入 sys.path，这样可以直接 import 根目录下的模块
+sys.path.insert(0, str(PROJECT_ROOT))
+
+# 现在可以直接 import switch_clash
+from switch_clash import switch_clash_group
+from tools.jav_link_fetch.video_fetch_Jable import get_video_info_jable
+from tools.jav_link_fetch.video_fetch_MissAV import get_video_info_missav
+from tools.Data_Base_Edit.db_edit import db_edit
+
 # 构造数据库路径
 db_path = PROJECT_ROOT / 'db' / 'data.db'
 cfg_path = PROJECT_ROOT / 'cfg' / 'config.yaml'
+SOURCE_PATH = PROJECT_ROOT / "cfg" / "source.yaml"
+
+MAX_WORKERS = 3
+
+# def update_proxy():
+#     test_group = "自定义代理"
+#     test_filter = "|"
+#     test_url_key = "jable"
+#     switch_clash_group(test_group, test_filter, test_url_key)
+
+def update_proxy():
+    test_group = "自定义代理"
+    test_filter = "NB|"
+    test_url_key = "jable"
+    switch_clash_group(test_group, test_filter, test_url_key)
 
 
-# 读取 actresses 表内容
-def list_actresses(db_path):
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
 
-    cursor.execute("SELECT name, filter FROM actresses")
-    for row in cursor.fetchall():
-        print(f"Name: {row['name']}, Filter: {row['filter']}")
+# # 读取 actresses 表内容
+# def list_actresses(db_path):
+#     conn = sqlite3.connect(db_path)
+#     conn.row_factory = sqlite3.Row
+#     cursor = conn.cursor()
 
-    conn.close()
+#     cursor.execute("SELECT name, filter FROM actresses")
+#     for row in cursor.fetchall():
+#         print(f"Name: {row['name']}, Filter: {row['filter']}")
+
+#     conn.close()
 
 
-# 解析过滤规则并应用
-def apply_filters(jav_videos, actress, filter_rule, enable_scan):
+def apply_filters(jav_videos, actress, filter_rule, enable_scan, download_mode=False):
     if enable_scan == 0:
         return []
-    
-    filter_rule = filter_rule or ''  # 最小修改，避免 NoneType 报错
 
+    filter_rule = filter_rule or ''
     date_min = None
     date_max = None
     keywords = []
@@ -53,15 +77,21 @@ def apply_filters(jav_videos, actress, filter_rule, enable_scan):
     for video in jav_videos:
         if video['name'] != actress:
             continue
-        if video['chinese_sub'] == 1 or video['state'] in ["skip", "out_number"]:
+
+        # 根据 download_mode 决定过滤状态
+        if download_mode:
+            excluded_states = ["skip", "out_number", "download", "no_res", "wait"]
+        else:
+            excluded_states = ["skip", "out_number"]
+
+        if video['chinese_sub'] == 1 or video['state'] in excluded_states:
             continue
 
-        
-        if video['date'] is not None:  # 只有有日期时才进行日期过滤
+        if video['date'] is not None:
             video_date = datetime.strptime(video['date'], "%Y.%m.%d")
             if (date_min and video_date < date_min) or (date_max and video_date > date_max):
                 continue
-        
+
         if any(keyword in video['id'] or keyword in (video['title'] or "") for keyword in keywords):
             continue
 
@@ -70,10 +100,7 @@ def apply_filters(jav_videos, actress, filter_rule, enable_scan):
     return filtered_videos
 
 
-# 列出 jav_videos 并应用过滤
-# def list_jav_videos(db_path):
-def list_jav_videos(db_path, target_actresses=None):
-
+def list_jav_videos(db_path, target_actresses=None, download_mode=False, refresh_mode=False):
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -81,20 +108,35 @@ def list_jav_videos(db_path, target_actresses=None):
     cursor.execute("SELECT id, name, date, title, chinese_sub, state FROM jav_videos")
     jav_videos = cursor.fetchall()
 
-    cursor.execute("SELECT name, filter, enable_scan FROM actresses")
-    actresses = cursor.fetchall()
+    ## - - - - 从数据库获取
+    # cursor.execute("SELECT name, filter, enable_scan FROM actresses")
+    # actresses = cursor.fetchall()
+
+    ## - - - - 从 yaml 获取
+    with open(SOURCE_PATH, 'r', encoding='utf-8') as f:
+        source_config = yaml.safe_load(f)
+
+    # 替换原来的数据库查询，使用 source.yaml 的数据
+    actresses = [{'name': row['Name'], 'filter': row['Filter'], 'enable_scan': row['Enable_Scan']} for row in source_config]
 
     all_filtered_videos = []
 
     for actress_row in actresses:
         actress = actress_row['name']
-        # 最小修改：只处理指定演员
         if target_actresses is not None and actress not in target_actresses:
             continue
 
         filter_rule = actress_row['filter']
-        enable_scan = actress_row['enable_scan'] or 0  # 修正可能为 None
-        filtered_videos = apply_filters(jav_videos, actress, filter_rule, enable_scan)
+
+        # 如果 refresh_mode，则替换 filter
+        if refresh_mode:
+            # three_months_ago = datetime.now() - timedelta(days=90)  # 近似3个月
+            three_months_ago = datetime.now() - timedelta(days=90000)  # 近似3个月
+
+            filter_rule = f"VR | > {three_months_ago.strftime('%Y.%m.%d')}"
+
+        enable_scan = actress_row['enable_scan'] or 0
+        filtered_videos = apply_filters(jav_videos, actress, filter_rule, enable_scan, download_mode)
 
         print(f"Filtered Videos for {actress}:")
         for video in filtered_videos:
@@ -104,7 +146,6 @@ def list_jav_videos(db_path, target_actresses=None):
 
     conn.close()
     return all_filtered_videos
-
 
 # 读取配置文件中的视频数据源
 def video_fetch(cfg_path):
@@ -119,151 +160,239 @@ def video_fetch(cfg_path):
     return video_data_sources
 
 
-# 调用外部脚本获取 m3u8_url
-def fetch_m3u8_url(id, video_source):
-    try:
-        command = [
-            'python3',
-            str(PROJECT_ROOT / 'tools' / 'jav_link_fetch' / f'video_fetch_{video_source["name"]}.py'),
-            id
-        ]
-        result = subprocess.run(command, capture_output=True, text=True)
+def fetch_m3u8_by_sources(video_id: str, video_data_sources: list):
+    """
+    按 video_data_sources 中 order 顺序获取 m3u8_url 和 chinese_sub
+    如果某个数据源返回 "false"，立即返回 "false" 并停止尝试其他数据源
+    如果某个数据源返回有效 URL，立即返回该 URL
+    如果所有数据源都返回 "404"，返回 "404"
+    """
+    sources_sorted = sorted(video_data_sources, key=lambda s: s.get('order', 0))
 
-        if result.returncode != 0:
-            print(f"Error running {command}: {result.stderr}")
-            return None, None
+    # 默认返回值（如果所有 source 都返回 404）
+    m3u8_url_final = "404"
+    chinese_sub_final = ""
+    source_name_final = ""
 
-        output = result.stdout
-        print(f"Output from {video_source['name']} for ID {id}: {output}")
+    for source in sources_sorted:
+        order = source.get('order', 0)
+        if order == 0:
+            continue  # 跳过 order=0
 
-        if any(line.strip().startswith("m3u8_url_") and line.strip().endswith("false") for line in output.splitlines()):
-            return "false", None
+        source_name = source.get('name', '')
+        name_lower = source_name.lower()
 
-        m3u8_url_line = [line for line in output.splitlines() if line.strip().startswith("m3u8_url_")]
-        m3u8_url = m3u8_url_line[0].split(":", 1)[-1].strip() if m3u8_url_line else None
-
-        chinese_sub_line = [line for line in output.splitlines() if line.strip().startswith("chinese_sub")]
-        chinese_sub = int(chinese_sub_line[0].split(":", 1)[-1].strip()) if chinese_sub_line else 0
-
-        return m3u8_url, chinese_sub
-
-    except Exception as e:
-        print(f"Exception when fetching m3u8_url: {e}")
-        return None, None
-
-
-# 处理筛选后的 ID 并更新数据库
-def process_ids(filtered_videos, video_data_sources):
-    all_404_ids = []
-    m3u8_results = []
-    has_false = False   # <<< 标志位
-
-    for video in filtered_videos:
-        vid_id = video['id']
-        print(f"\nProcessing ID: {vid_id}...")
-        attempted_results = []
-        skipped_due_to_false = False
-
-        for source in sorted(video_data_sources, key=lambda x: x['order']):
-            if source['order'] == 0:
-                print(f"Skipping source {source['name']} because order is 0")
+        try:
+            if name_lower == "jable":
+                m3u8_url_temp, chinese_sub_temp = get_video_info_jable(video_id)
+            elif name_lower == "missav":
+                m3u8_url_temp, chinese_sub_temp = get_video_info_missav(video_id)
+            else:
+                print(f"[WARN] Unknown video source: {source_name}")
                 continue
 
-            print(f"Trying source {source['name']}...")
-            m3u8_url, chinese_sub = fetch_m3u8_url(vid_id, source)
-            attempted_results.append(m3u8_url if m3u8_url else "404")
+            chinese_sub_temp = int(chinese_sub_temp) if chinese_sub_temp else 0
 
-            if m3u8_url == "false":
-                print(f"m3u8_url from {source['name']} is false, skipping ID {vid_id}...")
-                skipped_due_to_false = True
-                has_false = True  # <<< 只要遇到 false 就记下来
-                break
+            if m3u8_url_temp == "false":
+                # 遇到 false，立即退出，不尝试其他数据源
+                update_proxy()
+                return "false", "", ""
+            elif m3u8_url_temp not in ["404", None]:
+                # 成功获取
+                return m3u8_url_temp, chinese_sub_temp, source_name
+            # 如果是 "404"，继续尝试下一个 source
 
-            if not m3u8_url or m3u8_url == "404":
-                print(f"m3u8_url from {source['name']} is {m3u8_url}, try next source...")
-                continue
-
-            print(f"Success! m3u8_url for ID {vid_id} from {source['name']}: {m3u8_url}")
-            m3u8_results.append({
-                "ID": vid_id,
-                "m3u8_url": m3u8_url,
-                "chinese_sub": chinese_sub,
-                "source_name": source["name"]
-            })
-            break
-
-        if skipped_due_to_false:
+        except Exception as e:
+            print(f"[ERROR] Error fetching from {source_name} for {video_id}: {e}")
             continue
 
-        if attempted_results and all(r == "404" for r in attempted_results):
-            print(f"All sources returned 404 for ID {vid_id}. Adding to 404 list.")
-            all_404_ids.append(vid_id)
-        else:
-            print(f"Not marking ID {vid_id} as failed (results: {attempted_results}).")
+    # 所有 source 都返回 404
+    return "404", "", ""
 
-    print(f"\nALL_404 IDs: {all_404_ids}")
-    print(f"Success m3u8 URLs: {m3u8_results}")
+# def fetch_m3u8_parallel(filtered_videos: list, video_data_sources: list):
+#     """
+#     并行获取 filtered_videos 中所有 video 的 m3u8_url 和 chinese_sub
+#     :param filtered_videos: list of dict, 每个 dict 包含 'id'
+#     :param video_data_sources: 数据源列表
+#     :return: list of dict, 每个 dict 包含 ID, m3u8_url, chinese_sub, source_name
+#     """
+#     results = []
+#     has_false = False
+#     has_false_lock = threading.Lock()  # 线程锁，用于同步对 has_false 的修改
 
-    edit_db(db_path, all_404_ids, m3u8_results)
+#     # 按 ID 字典序排序
+#     sorted_videos = sorted(filtered_videos, key=lambda v: v['id'])
 
-    return has_false   # <<< 返回是否出现 false
+#     def task(video_id: str):
+#         m3u8_url, chinese_sub, source_name = fetch_m3u8_by_sources(video_id, video_data_sources)
+#         return {"ID": video_id, "m3u8_url": m3u8_url, "chinese_sub": chinese_sub, "source_name": source_name}
 
+#     # 使用线程池并行处理
+#     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+#         future_to_id = {executor.submit(task, video['id']): video['id'] for video in sorted_videos}
+#         total = len(future_to_id)          # <<< 新增：总任务数
+#         completed = 0                      # <<< 新增：已完成数
 
-# 更新数据库
-def edit_db(db_path, all_404_ids, m3u8_results):
-    conn = sqlite3.connect(db_path)
-    try:
-        cursor = conn.cursor()
-        for vid_id in all_404_ids:
-            cursor.execute("UPDATE jav_videos SET state = 'no_res' WHERE id = ?", (vid_id,))
-            print(f"[DB] Set state = 'no_res' for ID {vid_id}")
+#         for future in concurrent.futures.as_completed(future_to_id):
+#             vid_id = future_to_id[future]
+#             try:
+#                 result = future.result()
+#                 results.append(result)
 
-        for result in m3u8_results:
-            vid_id = result["ID"]
-            m3u8_url = result["m3u8_url"]
-            chinese_sub_new = result.get("chinese_sub", 0)
-            source_name = result.get("source_name", "")
+#                 if result["m3u8_url"] == "false":
+#                     with has_false_lock:
+#                         if not has_false:
+#                             has_false = True
+#                     print(f"[Check] hs_false: {has_false}")
 
-            cursor.execute("SELECT state, chinese_sub FROM jav_videos WHERE id = ?", (vid_id,))
-            row = cursor.fetchone()
-            if row:
-                state_old, chinese_sub_old = row
-                if state_old == "download" and chinese_sub_old == 0 and chinese_sub_new == 1:
-                    new_state = "new"
-                else:
-                    new_state = state_old
+#                 completed += 1  # <<< 每完成一个任务 +1
+#                 print(f"[{completed}/{total}] DONE ID {vid_id}: {result}")  # <<< 修改输出行
+
+#             except Exception as e:
+#                 print(f"[ERROR] ID {vid_id} fetch failed: {e}")
+#                 results.append({"ID": vid_id, "m3u8_url": "false", "chinese_sub": "", "source_name": ""})
+#                 with has_false_lock:
+#                     if not has_false:
+#                         has_false = True
+
+#     # 调用 write_to_db 函数进行数据库写入
+#     write_to_db(results)
+
+#     return has_false
+
+def fetch_m3u8_parallel(filtered_videos: list, video_data_sources: list):
+    """
+    并行获取 filtered_videos 中所有 video 的 m3u8_url 和 chinese_sub
+    :param filtered_videos: list of dict, 每个 dict 包含 'id'
+    :param video_data_sources: 数据源列表
+    :return: list of dict, 每个 dict 包含 ID, m3u8_url, chinese_sub, source_name
+    """
+    results = []
+    has_false = False
+    has_false_lock = threading.Lock()  # 线程锁，用于同步对 has_false 的修改
+
+    # 按 ID 字典序排序
+    sorted_videos = sorted(filtered_videos, key=lambda v: v['id'])
+
+    def task(video_id: str):
+        m3u8_url, chinese_sub, source_name = fetch_m3u8_by_sources(video_id, video_data_sources)
+        return {"ID": video_id, "m3u8_url": m3u8_url, "chinese_sub": chinese_sub, "source_name": source_name}
+
+    # 使用线程池并行处理
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_to_id = {executor.submit(task, video['id']): video['id'] for video in sorted_videos}
+        total = len(future_to_id)          # 总任务数
+        completed = 0                      # 已完成数
+        completed_count = 0                # 每次写入数据库时，计数已完成的任务数量
+
+        for future in concurrent.futures.as_completed(future_to_id):
+            vid_id = future_to_id[future]
+            try:
+                result = future.result()
+                results.append(result)
+
+                if result["m3u8_url"] == "false":
+                    with has_false_lock:
+                        if not has_false:
+                            has_false = True
+                    print(f"[Check] hs_false: {has_false}")
+
+                completed += 1  # 每完成一个任务 +1
+                completed_count += 1  # 计数已完成的任务
+
+                print(f"[{completed}/{total}] DONE ID {vid_id}: {result}")  # 输出完成情况
+
+                # 每完成20个任务，就写入一次数据库
+                if completed_count >= 20:
+                    write_to_db(results)
+                    results.clear()  # 清空已写入的结果
+                    completed_count = 0  # 重置计数器
+
+            except Exception as e:
+                print(f"[ERROR] ID {vid_id} fetch failed: {e}")
+                results.append({"ID": vid_id, "m3u8_url": "false", "chinese_sub": "", "source_name": ""})
+                with has_false_lock:
+                    if not has_false:
+                        has_false = True
+
+    # 如果还有剩余的结果未写入数据库，则写入
+    if results:
+        write_to_db(results)
+
+    return has_false
+
+def write_to_db(results):
+    """
+    将 m3u8_url 和 chinese_sub 写入数据库
+    :param results: 每个视频的结果列表，包含 ID, m3u8_url, chinese_sub, source_name
+    """
+
+    for r in results:
+        vid_id = r["ID"]
+        m3u8_url = r["m3u8_url"]
+        chinese_sub_new = r["chinese_sub"]
+        source_name = r["source_name"]
+
+        if m3u8_url == "404":
+            # 情况 1：无资源
+            db_edit.execute(
+                "UPDATE jav_videos SET state = 'no_res' WHERE id = ?",
+                (vid_id,)
+            )
+
+        elif m3u8_url and m3u8_url not in ("false", "404"):
+            # 情况 2：正常 m3u8 链接
+            row = db_edit.fetch_one(
+                "SELECT state, chinese_sub FROM jav_videos WHERE id = ?",
+                (vid_id,)
+            )
+
+            if not row:
+                continue  # 没有记录，跳过
+
+            state_old, chinese_sub_old = row
+
+            # 判断 state 是否要改
+            # ============ 新增判断 ============ 
+            if state_old in (None, "", " "):  # 原来为空或 NULL
+               new_state = "wait"
+            elif state_old == "download" and chinese_sub_old == 0 and chinese_sub_new == 1:
+                new_state = "new"
             else:
-                continue  # 没有记录就跳过
+                new_state = state_old
+            # =================================
 
-            cursor.execute(
+            print(f"[DB WRITE] ID={vid_id}, m3u8='{m3u8_url}', chinese_sub={chinese_sub_new}, "
+                  f"source_name='{source_name}', state='{new_state}'")
+
+            db_edit.execute(
                 "UPDATE jav_videos SET chinese_sub = ?, m3u8 = ?, m3u8_source = ?, state = ? WHERE id = ?",
                 (chinese_sub_new, m3u8_url, source_name, new_state, vid_id)
             )
-            print(f"[DB] Updated ID {vid_id}, chinese_sub={chinese_sub_new}, m3u8, m3u8_source={source_name}, state={new_state}")
 
-        conn.commit()
-        print("[DB] Database update completed.")
-    except Exception as e:
-        print(f"[DB] Error updating database: {e}")
-    finally:
-        conn.close()
+    print(f"[DB] 已处理 {len(results)} 条记录")
 
+# ==================== 测试 main ====================
+if __name__ == "__main__":
+    
+    args = sys.argv[1:]
 
-# 主函数
-def main():
-    # 最小修改：接收外部演员参数
-    target_actresses = sys.argv[1:] if len(sys.argv) > 1 else None
+    # 判断是否有 download_mode 和 refresh_mode
+    download_mode = "download_mode" in args
+    refresh_mode = "refresh_mode" in args
 
-    # filtered_videos = list_jav_videos(db_path)
-    filtered_videos = list_jav_videos(db_path, target_actresses)
+    # 过滤掉模式参数，剩下的作为指定演员列表
+    target_actresses = [a for a in args if a not in ["download_mode", "refresh_mode"]]
+    if not target_actresses:
+        target_actresses = None  # 这里是关键    
+    
+    
+    
+    
+    # 假设已经有 filtered_videos 和 video_data_sources
+    filtered_videos = list_jav_videos(db_path, target_actresses, download_mode, refresh_mode)
     video_data_sources = video_fetch(cfg_path)
-    has_false = process_ids(filtered_videos, video_data_sources)
 
-    if has_false:
-        sys.exit(1)   # <<< 出现 false，返回错误码 1
-    else:
-        sys.exit(0)   # <<< 否则返回成功
-
-
-if __name__ == '__main__':
-    main()
+    has_false = fetch_m3u8_parallel(filtered_videos, video_data_sources)
+    sys.exit(1 if has_false else 0)
+    

@@ -1,293 +1,188 @@
 import sys
-import re
-from bs4 import BeautifulSoup
 from pathlib import Path
+from bs4 import BeautifulSoup
+import js2py
+import re
+import yaml
 
-# ------------------ 动态添加项目根目录 ------------------
-# 1. 获取当前脚本文件路径
+# 获取当前脚本路径
 CURRENT_FILE = Path(__file__).resolve()
 
-# 2. 找到项目根目录（假设项目根目录下有 cfg 目录）
+# 找到项目根目录（假设项目根目录下有 cfg 目录）
 PROJECT_ROOT = next(p for p in CURRENT_FILE.parents if (p / "cfg").exists())
 
-# 3. 将项目根目录加入 Python 模块搜索路径
+# 将项目根目录加入 sys.path
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
-# ------------------ 导入项目模块 ------------------
-from tools.fetch import fetch_html, config
 
-# print("config:", config)
+# 现在可以导入 tools.fetch
+from tools.fetch import fetch_html
 
+CONFIG_FILE = PROJECT_ROOT / "cfg" / "config.yaml"
 
-# title: MKMP-659 專屬 巨乳辣妹從早到晚吃春藥，汗水與潮液四濺的24小時春藥耐久戰 乙愛麗絲
-# actress_name: 乙アリス
-# avatar_url: https://assets-cdn.jable.tv/contents/models/2261/s1_s1_alice-otsu.jpg
-# poster_url: https://assets-cdn.jable.tv/contents/videos_screenshots/53000/53278/preview.jpg
-# m3u8_url: https://asf-doc.mushroomtrack.com/hls/n1uvEuc90bAN0I1sVqJ6Cg/1757926360/53000/53278/53278.m3u8
-# Tags: 中文字幕, 角色劇情, 多P群交, 媚藥, 吊帶襪, 美尻, 漁網, 多P, 潮吹, 短髮, 顏射, 巨乳, 少女
-# Download_Path: /mnt/mac/SATA_SSD_2T/000-NASSAV/000-Sub/
+# 直接加载 YAML 文件
+with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+    config = yaml.safe_load(f)
 
 
-
-# ------------------ 正式函数 ------------------
-
-def parse_page(html):
-    if not html:
-        print("[ERROR] 页面内容为空，跳过解析")
-        return {
-            "title": "",
-            "actress_name": "",
-            "avatar_url": "",
-            "poster_url": "",
-            "m3u8_url": "false",
-            "tag_list": "",
-            "download_path": "",
-            "chinese_sub": ""
-        }
-    soup = BeautifulSoup(html, 'html.parser')
-    title = ""
-    actress_name = ""
-    avatar_url = ""
-    poster_url = ""
-    tag_list = ""
-    download_path = ""
-    chinese_sub = ""
-
-    # 提取title、actress_name、avatar_url
-    # 定位到 <div class="info-header">
-    info_header = soup.find('meta', property='og:title')
-    if info_header:
-        # 提取 <h4> title
-        title = info_header.get('content', '未知')
-    else:
-        title = ''
-        # print("title:", title)
-    # else:
-    #     print("未找到 info-header 区域")
-
-    info_actor = soup.find('meta', property='og:video:actor')
-    if info_actor:
-        actress_name = info_actor.get('content', '未知')
-    else:
-        actress_name = ''
-
-
-    info_poster = soup.find('video', attrs={'data-poster': True})
-    if info_poster:
-        poster_url = info_poster.get('data-poster', '未知')
-    else:
-        poster_url = ''
-        # print("poster_url:", poster_url)
-    # else:
-    #     print("未找到 info_poster 区域")
-
-
-
-    # 查找所有 script 标签
-    m3u8_urls = []
-    script_tags = soup.find_all("script")
-
-    for s in script_tags:
-        content = s.string or s.get_text() or ""
-        if not content:
-            continue
-
-        # 优先解析 eval 混淆 JS
-        if "eval(function(p,a,c,k,e,d)" in content:
-            decoded_urls = decode_eval_js(content) or []
-            if decoded_urls:
-                m3u8_urls.extend(decoded_urls)
-                continue  # 继续检查其他 script，可能有更多 URLs
-
-        # 如果不是 eval，直接找普通 m3u8
-        m = re.search(r"https?://[^\s'\"]+\.m3u8", content)
-        if m:
-            m3u8_urls.append(m.group(0).strip())
-
-    # 筛选 URLs：优先包含“1080”，次优先包含“720”，否则取最后一个
-    selected_url = None
-    if m3u8_urls:
-        # 优先找包含“1080”的 URL
-        for url in m3u8_urls:
-            if "1080" in url:
-                selected_url = url
-                break
-        # 如果没有“1080”，找包含“720”的 URL
-        if not selected_url:
-            for url in m3u8_urls:
-                if "720" in url:
-                    selected_url = url
-                    break
-        # 如果既没有“1080”也没有“720”，取最后一个
-        if not selected_url:
-            selected_url = m3u8_urls[-1]
-
-    # 打印结果
-    if selected_url:
-        m3u8_url = selected_url
-    else:
-        # 检查是否为 404 页面
-        p_tag = soup.find('p', class_=re.compile(r'.*'), string='404')
-        if p_tag:
-            m3u8_url = '404'
-        else:
-            m3u8_url = 'false'
-    
-    # 遍历所有 text-secondary div
-    Tags = []
-    for div in soup.find_all("div", class_="text-secondary"):
-        # 先判断这一行是否包含关键字 "genres"
-        if any("/genres/" in a.get("href", "") for a in div.find_all("a", href=True)):
-            # 抓取这一行所有 <a> 标签的文字
-            for a in div.find_all("a", href=True):
-                Tags.append(a.get_text(strip=True))
-            break  # 找到目标行就退出
-
-
-    # 类似 title 的判断
-    if Tags:
-        tag_list = ", ".join(Tags)
-    else:
-        tag_list = ""
-        # print("Tags:", tag_list)
-    # else:
-    #     print("未找到 Tags 区域")
-
-    # 检查 m3u8_url 是否为 'false' 或 '404'，决定Download_Path
-    # 设置 download_path
-    if m3u8_url in ('false', '404'):
-        download_path = ''  # 表示无下载路径
-    elif '中文字幕' in tag_list:
-        download_path = config['SavePath_Sub']
-        chinese_sub = 1
-    else:
-        download_path = config['SavePath_noSub']
-        chinese_sub = 0
-
-    return {
-        "title": title,
-        "actress_name": actress_name,
-        "avatar_url": "",      # 页面没提供头像，先空
-        "poster_url": poster_url,
-        "m3u8_url": m3u8_url,
-        "tag_list": tag_list,
-        "download_path": download_path,
-        "chinese_sub": chinese_sub
-    }
-
-def decode_eval_js(js_code: str) -> str:
+def get_base_url(source_name: str):
     """
-    解包典型的 eval(function(p,a,c,k,e,d){...})(payload,a,c,k.split('|'),...)
-    返回解包后找到的最后一个 .m3u8 URL（若没有则返回 None）。
+    根据输入的 source_name（如 'MissAV'）获取 base_url
+    如果未配置则返回 None
     """
-    # 匹配 eval 混淆 JS 的 payload, a, c, k
-    m = re.search(
-        r"eval\(function\(p,a,c,k,e,d\).*?\(\s*(['\"])(.+?)\1\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(['\"])(.+?)\5\.split\('\|'\)",
-        js_code, re.S
-    )
-    if not m:
-        return None
-
-    payload = m.group(2)
-    a = int(m.group(3))
-    c = int(m.group(4))
-    k = m.group(6).split("|")
-
-    # 按 JS 规则替换 payload 中的数字为对应字符串
-    for i in range(c-1, -1, -1):
-        if i < len(k) and k[i]:
-            pattern = r"\b{}\b".format(base36encode(i))
-            payload = re.sub(pattern, k[i], payload)
-
-    # 提取 .m3u8 链接
-    urls = re.findall(r"https?://[^\s'\";]+\.m3u8", payload)
-    return urls  # 返回所有 URLs，而不是最后一个
-
-def base36encode(number: int) -> str:
-    """把 10 进制数字转成 base36（js 中 c.toString(36) 的逆过程）"""
-    if number < 0:
-        raise ValueError("必须是非负整数")
-    digits = "0123456789abcdefghijklmnopqrstuvwxyz"
-    res = ""
-    while number:
-        number, i = divmod(number, 36)
-        res = digits[i] + res
-    return res or "0"
-
-
-#------------------ 正式 ------------------
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python3 Jable.py <video_id>")
-        sys.exit(1)
-
-    video_id = sys.argv[1].strip()
-    
-    # video_id = 'soe-198'
-
-    # 从 config 中获取 的 URL
     entry = next(
-        (d for d in config['JAV_Video_DataSources'] if d.get('name') == 'MissAV'),
+        (d for d in config.get('JAV_Video_DataSources', []) if d.get('name') == source_name),
         None
     )
     if not entry or not entry.get('urls'):
-        print("[ERROR] MissAV URL 未配置！")
-        sys.exit(1)
+        print(f"[ERROR] {source_name} URL 未配置！")
+        return None
 
     base_url = entry['urls'][0].rstrip("/")
+    return base_url
 
-    # 第一次请求 MissAV 中文字幕页面
-    url = f"{base_url}/{video_id}-chinese-subtitle"
-    html = fetch_html(url)
-    result = parse_page(html)
+def get_works_url_from_html(html: str, video_id: str):
+    """
+    从 HTML 中查找 div.content-with-search 下的链接
+    - 排除 href 中包含 "search" 的链接
+    - 优先返回包含 video_id 和 chinese-subtitle 的链接
+    - 如果没有，再返回包含 video_id 但不含 chinese-subtitle 的链接
+    返回：
+        url_works: 找到的链接 / 'false' / '404'
+        chinese_sub: 1/0/'' 
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    target = soup.select_one("div.content-with-search")
+    if not target:
+        return {"url_works": "false", "chinese_sub": ""}
+
+    links = target.find_all("a", href=True)
+    video_id_lower = video_id.lower()
+
+    matched_link = None
+    chinese_sub = ""
+
+    # 先找包含 chinese-subtitle 的链接
+    for a in links:
+        href = a['href']
+        href_lower = href.lower()
+        if "search" in href_lower:
+            continue
+        if video_id_lower in href_lower and "chinese-subtitle" in href_lower:
+            matched_link = href
+            chinese_sub = 1
+            break
+
+    # 如果没有找到，再找不包含 chinese-subtitle 的链接
+    if not matched_link:
+        for a in links:
+            href = a['href']
+            href_lower = href.lower()
+            if "search" in href_lower:
+                continue
+            if video_id_lower in href_lower:
+                matched_link = href
+                chinese_sub = 0
+                break
+
+    if matched_link:
+        url_works = matched_link
+    else:
+        url_works = "404"
+        chinese_sub = ""
+
+    return {"url_works": url_works, "chinese_sub": chinese_sub}
 
 
-    # 如果 m3u8_url 返回 404，则请求 MissAV 原始页面
-    if result.get("m3u8_url") == '404':
-        url = f"{base_url}/{video_id}/"
-        html = fetch_html(url)
-        result = parse_page(html)
+def get_playlist_m3u8_from_html(html):
+    """
+    从 HTML 字符串中提取执行 JS 后的 playlist.m3u8 链接
+    :param html: HTML 内容字符串
+    :return: m3u8_url 字符串，如果未找到赋值为 "false"
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    scripts = soup.find_all("script", {"type": "text/javascript"})
+
+    js_code = None
+    for s in scripts:
+        for line in (s.get_text() or "").splitlines():
+            if "function" in line and "m3u8" in line:
+                if line.strip().startswith("eval"):
+                    js_code = line.strip()[4:]  # 去掉 eval
+                else:
+                    js_code = line.strip()
+                break
+        if js_code:
+            break
+
+    if js_code:
+        encrypted = r"""%s""" % js_code
+        unpacked = js2py.eval_js(encrypted)
+
+        # 提取所有 .m3u8 链接
+        urls = re.findall(r'https?://[^\s\'";]+\.m3u8', str(unpacked))
+
+        # 找到 playlist.m3u8 的 URL
+        m3u8_url = next((u for u in urls if u.endswith("playlist.m3u8")), "false")
+    else:
+        m3u8_url = "false"
+
+    return m3u8_url
+
+def get_video_info_missav(video_id: str, source: str = "MissAV"):
+    """
+    根据 video_id 获取视频的 m3u8 链接和字幕信息
+    :param video_id: 视频编号
+    :param source: 数据源名称，默认 "MissAV"
+    :return: m3u8_url, chinese_sub
+        - m3u8_url: 链接字符串，如果未找到为 "false"
+        - chinese_sub: 1/0/""  如果 m3u8_url 未找到，则为空字符串
+    """
+    base_url = get_base_url(source)
+    if not base_url:
+        m3u8_url = "false"
+        chinese_sub = ""
+        return m3u8_url, chinese_sub
+
+    # 第一次请求搜索页面
+    url_search = f"{base_url}/search/{video_id.lower()}"
+    html_search = fetch_html(url_search)
     
-    # 打印结果
-    print("title_missav:", result.get("title", ""))
-    print("actress_name_missav:", result.get("actress_name", ""))
-    print("avatar_url_missav:", result.get("avatar_url", ""))
-    print("poster_url_missav:", result.get("poster_url", ""))
-    print("m3u8_url_missav:", result.get("m3u8_url", "false"))
-    print("tags_missav:", result.get("tag_list", ""))
-    print("download_path:", result.get("download_path", ""))
-    print("chinese_sub:", result.get("chinese_sub", ""))
+    if not html_search:
+        m3u8_url = "false"
+        chinese_sub = ""
+        return m3u8_url, chinese_sub
+            
+    # 解析搜索结果
+    result = get_works_url_from_html(html_search, video_id)
+    url_works = result["url_works"]
+    chinese_sub = result["chinese_sub"]
 
+    m3u8_url = result["url_works"]  # 赋值
+    chinese_sub = result["chinese_sub"]
+    # print(f"m3u8_url = {m3u8_url}")
+    # print(f"chinese_sub = {chinese_sub}")
+    
+    # 只有 m3u8_url 有效才去请求视频页面解析真正的 m3u8
+    if m3u8_url not in ["false", "404"]:
+        html_works = fetch_html(m3u8_url)
+        if html_works:
+            m3u8_url = get_playlist_m3u8_from_html(html_works)
+        else:
+            m3u8_url = "false"
+            chinese_sub = ""  # m3u8 不存在则字幕无效
 
-# # # # ------------------ 测试 ------------------
-# def main():
-#     # HTML 文件路径，可以改成你需要解析的文件
-#     html_dir = PROJECT_ROOT / "test_html" / "MissAV"
-#     html_files = ["404.html", "cn_sub.html", "cloudflare.html", "nosub.html", "1080.html", "480.html"]
+    # if m3u8_url == "false":
+    #     chinese_sub = ""
 
-#     for filename in html_files:
-#         html_path = html_dir / filename
-#         if not html_path.exists():
-#             print(f"[WARN] 文件不存在: {html_path}")
-#             continue
-
-#         # 读取本地 HTML
-#         html = html_path.read_text(encoding="utf-8")
-
-#         print(f"\n=== 解析文件: {filename} ===")
-        
-#         result = parse_page(html)
-
-#         print("title_missav:", result.get("title", ""))
-#         print("actress_name_missav:", result.get("actress_name", ""))
-#         print("avatar_url_missav:", result.get("avatar_url", ""))
-#         print("poster_url_missav:", result.get("poster_url", ""))
-#         print("m3u8_url_missav:", result.get("m3u8_url", "false"))
-#         print("Tags_missav:", result.get("tag_list", ""))
-#         print("download_path:", result.get("download_path", ""))
-#         print("chinese_sub:", result.get("chinese_sub", ""))
-
-
+    return m3u8_url, chinese_sub
 
 if __name__ == "__main__":
-    main()
+    video_id = "300MIUM-1268"
+    m3u8_url, chinese_sub = get_video_info_missav(video_id)
+
+    print(f"m3u8_url = {m3u8_url}")
+    print(f"chinese_sub = {chinese_sub}")
+
+

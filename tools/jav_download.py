@@ -20,6 +20,14 @@ LOCK_FILE = PROJECT_ROOT / 'work'
 # ENABLE_LOCK = True  # True 表示启用锁文件，False 表示禁用
 ENABLE_LOCK = False  # True 表示启用锁文件，False 表示禁用
 
+# 现在可以直接 import switch_clash
+sys.path.insert(0, str(PROJECT_ROOT))
+from switch_clash import switch_clash_group
+from tools.jav_link_fetch.video_fetch_Jable import get_video_info_jable
+from tools.jav_link_fetch.video_fetch_MissAV import get_video_info_missav
+from tools.Data_Base_Edit.db_edit import db_edit
+
+
 def create_lock_file():
     if not ENABLE_LOCK:
         return
@@ -110,7 +118,7 @@ def filter_videos(target_actresses=None):
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT id, name, date, title, chinese_sub, state FROM jav_videos")
+    cursor.execute("SELECT id, name, date, title, chinese_sub, state, m3u8 FROM jav_videos")
     videos = cursor.fetchall()
     print(f"\nTotal videos in DB: {len(videos)}")
 
@@ -134,12 +142,17 @@ def filter_videos(target_actresses=None):
         print(f"\nFiltering for actress: {name}, Filter: {filter_rule}")
 
         for video in videos:
-            vid, v_name, v_date, v_title, chinese_sub, state = video
-            # print(f"Checking video: {vid}, name={v_name}, title={v_title}, state={state}")
+            vid, v_name, v_date, v_title, chinese_sub, state, m3u8 = video
+            # print(f"Checking video: {vid}, name={v_name}, title={v_title}, state={state}, m3u8={m3u8}")
 
             if v_name != name:
                 continue
+    
             if state in ("download", "no_res", "out_number"):
+                continue
+
+
+            if not m3u8 or not isinstance(m3u8, str) or "http" not in m3u8.lower():
                 continue
 
             # ⭐ 如果标题为空，就用 id 来代替
@@ -167,33 +180,62 @@ def filter_videos(target_actresses=None):
     conn.close()
     return filtered_videos
 
-# ------------------ 调用外部脚本获取 m3u8_url ------------------
-def fetch_m3u8_url(video_id, video_source):
-    try:
-        command = [
-            'python3',
-            str(PROJECT_ROOT / 'tools' / 'jav_link_fetch' / f"video_fetch_{video_source['name']}.py"),
-            video_id
-        ]
 
-        # 调试：打印即将运行的命令
-        print("[DEBUG] Running command:", " ".join(command))
+def fetch_m3u8_by_sources(video_id: str, video_data_sources: list):
+    """
+    按 video_data_sources 中 order 顺序获取 m3u8_url 和 chinese_sub
+    如果某个数据源返回 "false"，立即返回 "false" 并停止尝试其他数据源
+    如果某个数据源返回有效 URL，立即返回该 URL
+    如果所有数据源都返回 "404"，返回 "404"
+    """
+    sources_sorted = sorted(video_data_sources, key=lambda s: s.get('order', 0))
 
-        result = subprocess.run(command, capture_output=True, text=True)
-        if result.returncode != 0:
-            return None, None
+    # 默认返回值（如果所有 source 都返回 404）
+    m3u8_url_final = "404"
+    chinese_sub_final = ""
 
-        output = result.stdout
-        m3u8_url_line = [line for line in output.splitlines() if line.strip().startswith("m3u8_url_")]
-        m3u8_url = m3u8_url_line[0].split(":", 1)[-1].strip() if m3u8_url_line else None
+    for source in sources_sorted:
+        order = source.get('order', 0)
+        if order == 0:
+            continue  # 跳过 order=0
 
-        chinese_sub_line = [line for line in output.splitlines() if line.strip().startswith("chinese_sub")]
-        chinese_sub = chinese_sub_line[0].split(":", 1)[-1].strip() if chinese_sub_line else None
+        source_name = source.get('name', '')
+        name_lower = source_name.lower()
 
-        return m3u8_url, chinese_sub
-    except Exception as e:
-        print(f"Exception fetching m3u8_url: {e}")
-        return None, None
+        try:
+            if name_lower == "jable":
+                m3u8_url, chinese_sub = get_video_info_jable(video_id)
+            elif name_lower == "missav":
+                m3u8_url, chinese_sub = get_video_info_missav(video_id)
+            else:
+                print(f"[WARN] Unknown video source: {source_name}")
+                continue
+
+            chinese_sub = int(chinese_sub) if chinese_sub else 0
+
+            if m3u8_url == "false":
+                # 遇到 false，立即退出，不尝试其他数据源
+                return "false", ""
+            elif m3u8_url not in ["404", None]:
+                # 成功获取
+                return m3u8_url, chinese_sub
+            # 如果是 "404"，继续尝试下一个 source
+
+        except Exception as e:
+            print(f"[ERROR] Error fetching from {source_name} for {video_id}: {e}")
+            continue
+
+    # 所有 source 都返回 404
+    return "404", ""
+
+
+
+
+
+
+
+
+
 
 def process_video_ids(filtered_videos, video_data_sources, cfg):
     import subprocess
@@ -226,36 +268,53 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
     all_success = True  # 记录总结果
 
     for video in filtered_videos:
-        video_id, name, video_date, video_title, chinese_sub, state = video
+        # video_id, name, video_date, video_title, chinese_sub, state = video
+        video_id, name, video_date, video_title, chinese_sub, state, m3u8 = video
+
+        # # 获取下载 URL
+        # m3u8_url = None
+        # for source in sorted(video_data_sources, key=lambda x: x.get("order", 0)):
+        #     if source.get("order", 0) == 0:
+        #         continue
+        #     url, sub_flag = fetch_m3u8_by_sources(video_id, source)
+            
+            
+        #     if url and url not in ["false", "404"]:
+        #         m3u8_url = url
+        #         break
+
+
+            
+        #     if url == "false":
+        #         print(f"{video_id} 返回 false，放弃该 ID，继续下一个视频...")
+        #         break  # 跳出当前 source 循环，m3u8_url 仍为 None
+
+        #     if url != "404":
+        #         m3u8_url = url
+        #         break  # 找到有效 URL，停止尝试其他源
+
+
+        # if not m3u8_url:
+        #     print(f"{video_id} 返回的url:{url} 跳过...")
+        #     all_success = False
+        #     continue
+    
 
         # 获取下载 URL
         m3u8_url = None
-        for source in sorted(video_data_sources, key=lambda x: x.get("order", 0)):
-            if source.get("order", 0) == 0:
-                continue
-            url, sub_flag = fetch_m3u8_url(video_id, source)
-            
-            
-            # if url and url not in ["false", "404"]:
-            #     m3u8_url = url
-            #     break
+        video_data_sources = video_fetch(cfg_path)
+        m3u8_url, chinese_sub = fetch_m3u8_by_sources(video_id, video_data_sources)           
 
+        # if m3u8_url and m3u8_url not in ["false", "404"]:
+        #     m3u8_url = m3u8_url
 
-            
-            if url == "false":
-                print(f"{video_id} 返回 false，放弃该 ID，继续下一个视频...")
-                break  # 跳出当前 source 循环，m3u8_url 仍为 None
-
-            if url != "404":
-                m3u8_url = url
-                break  # 找到有效 URL，停止尝试其他源
-
-
-        if not m3u8_url:
-            print(f"{video_id} 返回的url:{url} 跳过...")
+        # 新增判断：跳过 false 或 404 的 m3u8_url
+        if m3u8_url in ["false", "404"]:
+            print(f"Skipping {video_id} because m3u8_url is {m3u8_url}")
             all_success = False
-            continue
+            continue  # 跳过当前视频，继续下一个
 
+    
         save_path = SavePath_Sub if chinese_sub == 1 else SavePath_noSub
         savename = f"{video_id}-C" if chinese_sub == 1 else video_id
         # save_path_real = Path(f"{save_path}/{name}/{video_id}")
@@ -316,8 +375,9 @@ def process_video_ids(filtered_videos, video_data_sources, cfg):
 def build_download_cmd(selected_downloader, m3u8_url, tmp_path, save_path_real, savename, Proxy_Download, IsNeedDownloadProxy):
     if selected_downloader == "N_m3u8DL_RE":
         cmd = (
-            f"/m3u8_Downloader/N_m3u8DL-RE {m3u8_url} "
-            f"--auto-select True --thread-count 32 "
+            f"ulimit -n 10000 && "
+            f"N_m3u8DL-RE {m3u8_url} "
+            f"--auto-select True --thread-count 32 --no-log "
             f"--tmp-dir {tmp_path} "
             f"--save-dir {tmp_path} "
             f"--save-name {savename} "
